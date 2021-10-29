@@ -91,6 +91,15 @@ require_once(__DIR__ . '/../../layout/header.php');
                         </div>
 
                         <div class="form-group">
+                            <label for="exampleFormControlFile1">Link ảnh</label>
+                            <div style="margin-bottom: 1%;" class="col-sm-8">
+                                <form  action="<?php base_url()?>" method="POST" enctype="multipart/form-data">
+                                    <input type="file" class='form-control-file' id="exampleFormControlFile1" name='link_img'>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Blog</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" rows="3" id="summernote" name='garden_content'>
