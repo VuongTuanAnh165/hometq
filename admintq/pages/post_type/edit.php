@@ -125,7 +125,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Mô tả</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" rows="3" id="summernote" name='post_type_description'>
+                                <textarea class="form-control" rows="3" name='post_type_description'>
                                     <?php echo $post_type['post_type_description'] ?>
                                 </textarea>
                             </div>

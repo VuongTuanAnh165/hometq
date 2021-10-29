@@ -93,6 +93,23 @@ require_once(__DIR__ . '/../../layout/header.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <form action="./link_img.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Link ảnh</label>
+                            <div style="margin-bottom: 1%;" class="col-sm-8">
+                                <div class="row">
+                                    <input type="file" class='form-control-file col-sm-5' id="exampleFormControlFile1" name='pages_img_name'>
+                                    <button type="submit" class="btn btn-success col-sm-2" name="submit">Lấy link URL</button>
+                                </div>
+                                <?php
+                                if (isset($_SESSION['link_img'])) {
+                                    echo $_SESSION['link_img'];
+                                    unset($_SESSION['link_img']);
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </form>
                     <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
@@ -116,7 +133,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                             <div class="col-sm-8">
                                 <input type="file" class='form-control-file' id="exampleFormControlFile1" name='service_image' onchange="preview_thumbail1(this);">
 
-                                <img width="100px" id="anh1" src="<?php echo base_img('service')?>photo/<?php echo $service['service_image'] ?>" alt="<?php echo $service['service_image'] ?>">
+                                <img width="100px" id="anh1" src="<?php echo base_img('service') ?>photo/<?php echo $service['service_image'] ?>" alt="<?php echo $service['service_image'] ?>">
                             </div>
                         </div>
 

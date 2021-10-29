@@ -129,7 +129,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Mô tả</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" id="summernote" name='service_gr_description'>
+                                <textarea class="form-control" name='service_gr_description'>
                                     <?php echo $service_group['service_gr_description'] ?>
                                 </textarea>
                                 <?php if (isset($error['service_gr_description'])) :  ?>

@@ -80,6 +80,23 @@ require_once(__DIR__ . '/../../layout/header.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <form action="./link_img.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Link ảnh</label>
+                            <div style="margin-bottom: 1%;" class="col-sm-8">
+                                <div class="row">
+                                    <input type="file" class='form-control-file col-sm-5' id="exampleFormControlFile1" name='pages_img_name'>
+                                    <button type="submit" class="btn btn-success col-sm-2" name="submit">Lấy link URL</button>
+                                </div>
+                                <?php
+                                if (isset($_SESSION['link_img'])) {
+                                    echo $_SESSION['link_img'];
+                                    unset($_SESSION['link_img']);
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </form>
                     <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">

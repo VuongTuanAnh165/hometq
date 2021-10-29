@@ -273,6 +273,30 @@ $company = $db->fetchdata($sql);
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-header">Hình ảnh</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-plus-square"></i>
+                                <p>
+                                    Quản lý hình ảnh
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>pages/pages_img/index.php" class="nav-link">
+                                        <i class="bi bi-play nav-icon"></i>
+                                        <p>Hình ảnh</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url(); ?>pages/pages_img_gr/index.php" class="nav-link">
+                                        <i class="bi bi-play nav-icon"></i>
+                                        <p>Nhóm hình ảnh</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-header">Tài khoản</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
