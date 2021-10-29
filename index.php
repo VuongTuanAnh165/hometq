@@ -341,7 +341,7 @@ $policies = $db->fetchdata($sql_policies);
             <div class="col-md-12">
                 <div class="section-title-box">
                     <h4 class="section-subtitle wow fadeInUp">Tiến trình công việc</h4>
-                    <h2 class="section-title wow fadeInUp">Tửng bước công việc <br>được lên kế hoạch tỉ mỉ chú đáo</h2>
+                    <h2 class="section-title wow fadeInUp">Từng bước công việc <br>được lên kế hoạch tỉ mỉ chú đáo</h2>
                 </div>
                 <div class="themesflat-spacer clearfix" data-desktop="65" data-mobile="60" data-smobile="60">
                 </div>
@@ -363,7 +363,7 @@ $policies = $db->fetchdata($sql_policies);
                             Lên kế hoạch thực hiện
                         </h3>
                         <p class="section-desc">
-                            Lorem Ipsum is simply dummy text of free available market typesetting industry has been the
+                            Đưa ra từng bước cụ thể nhằm chủ động trong việc thực hiện dự án sau này.
                         </p>
                     </div>
                 </div>
@@ -379,7 +379,7 @@ $policies = $db->fetchdata($sql_policies);
                             Thực hiện công việc
                         </h3>
                         <p class="section-desc">
-                            Lorem Ipsum is simply dummy text of free available market typesetting industry has been the
+                            Từng bước trong công việc sẽ được chú tâm thực hiện nhằm hoàn thành dự án tốt nhất
                         </p>
                     </div>
                 </div>
@@ -398,7 +398,7 @@ $policies = $db->fetchdata($sql_policies);
                             Phân bổ công việc
                         </h3>
                         <p class="section-desc">
-                            Lorem Ipsum is simply dummy text of free available market typesetting industry has been the
+                            Các công việc cụ thể được phân chia cho các bộ phận nghiệp vụ khác nhau.
                         </p>
                     </div>
                 </div>
@@ -414,7 +414,7 @@ $policies = $db->fetchdata($sql_policies);
                             Hoàn thành dự án
                         </h3>
                         <p class="section-desc">
-                            Lorem Ipsum is simply dummy text of free available market typesetting industry has been the
+                            Đảm bảo dự án hoàn thiện tốt và đúng tiến độ.
                         </p>
                     </div>
                 </div>
