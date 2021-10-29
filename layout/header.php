@@ -159,9 +159,9 @@ $post_type = $db->fetchdata($sql_post_type);;
                                             <a href="#"><i class="fa fa-search"></i></a>
                                         </div>
                                         <div class="top-search widgets-input">
-                                            <form action="get" id="searchform-all" class="header-search search-form">
+                                            <form action="<?php echo base_url()?>pages/post/index.php" id="searchform-all" class="header-search search-form" method="POST">
                                                 <div class="input-group">
-                                                    <input type="search" id="s" class="search-field" placeholder="Tìm kiếm" aria-label="Search" />
+                                                    <input name="post_title" type="search" id="s" class="search-field" placeholder="Tìm kiếm" aria-label="Search" />
                                                     <button class="search-submit" type="submit" title="Search"></button>
                                                 </div>
                                             </form>
