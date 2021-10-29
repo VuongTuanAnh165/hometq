@@ -1201,7 +1201,7 @@
 .flat-contact {
     position: relative;
     background-color: var(--primary-color3);
-    background-image: url(../images/mask-back-ground/Group-contact.png);
+    /* background-image: url(../images/mask-back-ground/Group-contact.png); */
     background-position: -120% 37%;
     background-repeat: no-repeat;
     padding: 112px 5px 99px 0px;
