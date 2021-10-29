@@ -238,7 +238,7 @@ $policies = $db->fetchdata($sql_policies);
                         <div class="our-services-overlay"></div>
                         <span class="tf-icon icon-size icon-icon-farming-layer"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
                         <div class="content-features">
-                            <a href="service-details.html">
+                            <a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>">
                                 <h3 class="section-heading-jost-size22">
                                     <?php echo $item['service_gr_name'] ?></h3>
                             </a>
@@ -246,7 +246,7 @@ $policies = $db->fetchdata($sql_policies);
                                 <?php echo $item['service_gr_description'] ?>
                             </p>
                             <div class="link2 link-style2">
-                                <a href="service-details.html" class="read-more">
+                                <a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>" class="read-more">
                                     Xem thêm
                                 </a>
                             </div>
@@ -284,14 +284,14 @@ $policies = $db->fetchdata($sql_policies);
                             <div class="profolio-show">
                                 <div class="profolio-info">
                                     <div class="info">
-                                        <a href="case-details.html">
+                                        <a href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>">
                                             <h3 class="section-heading-jost-size20">
                                                 <?php echo $item['project_status'] ?></h3>
                                         </a>
                                         <p class="desc-box"><?php echo $item['project_name'] ?></p>
                                     </div>
                                     <div class="button-next">
-                                        <a class="profolio-btn" href="case-details.html"></a>
+                                        <a class="profolio-btn" href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>"></a>
                                     </div>
                                 </div>
                             </div>
@@ -532,10 +532,10 @@ $policies = $db->fetchdata($sql_policies);
                                                 <?php echo $item['post_type_title']; ?>
                                             </a></div>
                                         <div class="link-style6">
-                                            <div class="content-info margin-top"><a href="blog-detail.html" class="user">
+                                            <div class="content-info margin-top"><a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>" class="user">
                                                     By Admin
                                                 </a></div>
-                                            <a href="blog-detail.html" class="section-heading-jost-size20">
+                                            <a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>" class="section-heading-jost-size20">
                                                 <?php echo $item['post_title']; ?>
                                             </a>
                                         </div>
