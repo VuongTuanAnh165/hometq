@@ -56,34 +56,74 @@ $policies = $db->fetchdata($sql_policies);
                             <ul>
                                 <!-- Slide 1 -->
                                 <?php foreach ($service as $item) : ?>
-                                    <li data-transition="random">
-                                        <!-- Main Image -->
-                                        <!-- Layers -->
-                                        <div class="tp-caption tp-resizeme text-one" data-x="['left','left','left','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-274','-50','-50','-50']" data-fontsize="['16','0','0','0']" data-lineheight="['20','0','0','0']" data-width="full" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;" data-start="700" data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                            <h3 class="sub-title">DỊCH VỤ</h3>
-                                        </div>
+                                <li data-transition="random">
+                                    <!-- Main Image -->
+                                    <!-- Layers -->
+                                    <div class="tp-caption tp-resizeme text-one"
+                                        data-x="['left','left','left','center']" data-hoffset="['0','0','0','0']"
+                                        data-y="['middle','middle','middle','middle']"
+                                        data-voffset="['-274','-50','-50','-50']" data-fontsize="['16','0','0','0']"
+                                        data-lineheight="['20','0','0','0']" data-width="full" data-height="none"
+                                        data-whitespace="normal" data-transform_idle="o:1;"
+                                        data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                                        data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;"
+                                        data-start="700" data-splitin="none" data-splitout="none"
+                                        data-responsive_offset="on">
+                                        <h3 class="sub-title">DỊCH VỤ</h3>
+                                    </div>
 
-                                        <div class="tp-caption tp-resizeme text-two" data-x="['left','left','left','center']" data-hoffset="['-2','-2','5','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-130','-165',10','-15']" data-fontsize="['60','70','50','60']" data-lineheight="['70','80','64','48']" data-width="full" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;" data-start="700" data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                            <div class="title-box">
-                                                <h2 class="title-slider text-pri2-color"><?php echo $item['service_name'] ?></h2>
+                                    <div class="tp-caption tp-resizeme text-two"
+                                        data-x="['left','left','left','center']" data-hoffset="['-2','-2','5','0']"
+                                        data-y="['middle','middle','middle','middle']"
+                                        data-voffset="['-130','-165',10','-15']" data-fontsize="['60','70','50','60']"
+                                        data-lineheight="['70','80','64','48']" data-width="full" data-height="none"
+                                        data-whitespace="normal" data-transform_idle="o:1;"
+                                        data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                                        data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;"
+                                        data-start="700" data-splitin="none" data-splitout="none"
+                                        data-responsive_offset="on">
+                                        <div class="title-box">
+                                            <h2 class="title-slider text-pri2-color"><?php echo $item['service_name'] ?>
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="tp-caption btn-text btn-linear hv-linear-gradient"
+                                        data-x="['left','left','left','center']" data-hoffset="['-3','-3','5','0']"
+                                        data-y="['middle','middle','middle','middle']"
+                                        data-voffset="['48','40','180','300']" data-width="full" data-height="none"
+                                        data-whitespace="normal" data-transform_idle="o:1;"
+                                        data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                                        data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;"
+                                        data-start="700" data-splitin="none" data-splitout="none"
+                                        data-responsive_offset="on">
+                                        <div class="button-box">
+                                            <div class="button res-btn-slider">
+                                                <a href="#" class="btn btn-left">Liên hệ</a>
+                                            </div>
+                                            <div class="button">
+                                                <a href="#" class="btn">Xem thêm</a>
                                             </div>
                                         </div>
-
-                                        <div class="tp-caption btn-text btn-linear hv-linear-gradient" data-x="['left','left','left','center']" data-hoffset="['-3','-3','5','0']" data-y="['middle','middle','middle','middle']" data-voffset="['48','40','180','300']" data-width="full" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;" data-start="700" data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                            <div class="button-box">
-                                                <div class="button res-btn-slider">
-                                                    <a href="#" class="btn btn-left">Liên hệ</a>
-                                                </div>
-                                                <div class="button">
-                                                    <a href="#" class="btn">Xem thêm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tp-caption tp-resizeme image-slider text-right " data-x="['right','right','right','right']" data-hoffset="['-29','-29','-150','-29']" data-y="['center','center','center','center']" data-voffset="['-88','-88','60','-88']" data-width="full" data-height="none" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="y:0;z:[100%];rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;" data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-mask_in="x:[100%];y:0px;" data-mask_out="x:inherit;y:inherit;" data-start="900" data-splitin="none" data-splitout="none" data-responsive_offset="on">
-                                            <?php echo "<img class='img-slide wow jackInTheBox' data-wow-delay='2500ms' data-wow-duration='3s' src='./pages_img/service/photo/" . $item['service_image'] . "' alt='' style='margin-top:-5%'>" ?>
-                                        </div>
-                                    </li>
-                                    <!-- /End Slide 1 -->
+                                    </div>
+                                    <div class="tp-caption tp-resizeme image-slider text-right "
+                                        data-x="['right','right','right','right']"
+                                        data-hoffset="['-29','-29','-150','-29']"
+                                        data-y="['center','center','center','center']"
+                                        data-voffset="['-88','-88','60','-88']" data-width="full" data-height="none"
+                                        data-whitespace="normal" data-transform_idle="o:1;"
+                                        data-transform_in="y:0;z:[100%];rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                                        data-mask_in="x:[100%];y:0px;" data-mask_out="x:inherit;y:inherit;"
+                                        data-start="900" data-splitin="none" data-splitout="none"
+                                        data-responsive_offset="on">
+                                        <?php echo "<img class='img-slide wow jackInTheBox' data-wow-delay='2500ms' data-wow-duration='3s' src='./pages_img/service/photo/" . $item['service_image'] . "' alt='' style='margin-top:-5%'>" ?>
+                                    </div>
+                                </li>
+                                <!-- /End Slide 1 -->
                                 <?php endforeach ?>
                             </ul>
                         </div>
@@ -190,8 +230,10 @@ $policies = $db->fetchdata($sql_policies);
                     <div class="about-count-box themesflat-counter">
                         <div class="box">
                             <div class="inner-about-count-box">
-                                
-                                <span class="number-count number" data-speed="1500" data-to="<?php $date = getdate() ;echo ($date['year']-2009) ?>" data-inviewport="yes"><?php $date = getdate() ;echo ($date['year']-2009) ?></span>
+
+                                <span class="number-count number" data-speed="1500"
+                                    data-to="<?php $date = getdate() ;echo ($date['year']-2009) ?>"
+                                    data-inviewport="yes"><?php $date = getdate() ;echo ($date['year']-2009) ?></span>
                                 <div class="caption-number-count">
                                     Năm kinh nghiệm
                                 </div>
@@ -233,26 +275,30 @@ $policies = $db->fetchdata($sql_policies);
             </div>
 
             <?php foreach ($service_group_rand as $item) : ?>
-                <div class="item-four-column">
-                    <div class="our-services-box hover-up-style2 mg-bottom30 wow fadeInDown">
-                        <div class="our-services-overlay"></div>
-                        <span class="tf-icon icon-size icon-icon-farming-layer"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
-                        <div class="content-features">
-                            <a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>">
-                                <h3 class="section-heading-jost-size22">
-                                    <?php echo $item['service_gr_name'] ?></h3>
+            <div class="item-four-column">
+                <div class="our-services-box hover-up-style2 mg-bottom30 wow fadeInDown">
+                    <div class="our-services-overlay"></div>
+                    <span class="tf-icon icon-size icon-icon-farming-layer"><span class="path1"></span><span
+                            class="path2"></span><span class="path3"></span><span class="path4"></span><span
+                            class="path5"></span></span>
+                    <div class="content-features">
+                        <a
+                            href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>">
+                            <h3 class="section-heading-jost-size22">
+                                <?php echo $item['service_gr_name'] ?></h3>
+                        </a>
+                        <p class="section-desc">
+                            <?php echo $item['service_gr_description'] ?>
+                        </p>
+                        <div class="link2 link-style2">
+                            <a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>"
+                                class="read-more">
+                                Xem thêm
                             </a>
-                            <p class="section-desc">
-                                <?php echo $item['service_gr_description'] ?>
-                            </p>
-                            <div class="link2 link-style2">
-                                <a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>" class="read-more">
-                                    Xem thêm
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
             <?php endforeach ?>
         </div>
     </div>
@@ -263,7 +309,7 @@ $policies = $db->fetchdata($sql_policies);
 <section class="flat-profolio">
     <div class="container">
         <div class="row">
-            
+
             <div class="col-md-12">
                 <div class="section-title-box">
                     <h4 class="section-subtitle wow fadeInUp">Dự án</h4>
@@ -277,27 +323,30 @@ $policies = $db->fetchdata($sql_policies);
     <div class="container-fluid">
         <div class="row">
             <?php foreach ($project_rand as $item) : ?>
-                <div class="item-four-column">
-                    <div class="list-box-profolio wow fadeInUp">
-                        <div class="image-profolio bd-radius-8-image">
-                            <img src="<?php echo base_img('project') ?>photo/<?php echo $item['project_img'] ?>" alt="images">
-                            <div class="profolio-show">
-                                <div class="profolio-info">
-                                    <div class="info">
-                                        <a href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>">
-                                            <h3 class="section-heading-jost-size20">
-                                                <?php echo $item['project_status'] ?></h3>
-                                        </a>
-                                        <p class="desc-box"><?php echo $item['project_name'] ?></p>
-                                    </div>
-                                    <div class="button-next">
-                                        <a class="profolio-btn" href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>"></a>
-                                    </div>
+            <div class="item-four-column">
+                <div class="list-box-profolio wow fadeInUp">
+                    <div class="image-profolio bd-radius-8-image">
+                        <img src="<?php echo base_img('project') ?>photo/<?php echo $item['project_img'] ?>"
+                            alt="images">
+                        <div class="profolio-show">
+                            <div class="profolio-info">
+                                <div class="info">
+                                    <a
+                                        href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>">
+                                        <h3 class="section-heading-jost-size20">
+                                            <?php echo $item['project_status'] ?></h3>
+                                    </a>
+                                    <p class="desc-box"><?php echo $item['project_name'] ?></p>
+                                </div>
+                                <div class="button-next">
+                                    <a class="profolio-btn"
+                                        href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             <?php endforeach ?>
         </div>
     </div>
@@ -313,7 +362,8 @@ $policies = $db->fetchdata($sql_policies);
                 <div class="row">
                     <div class="content-left">
                         <div class="tag-logo">
-                            <img src="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo']?>" alt="images">
+                            <img src="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo']?>"
+                                alt="images">
                         </div>
                     </div>
                 </div>
@@ -322,7 +372,9 @@ $policies = $db->fetchdata($sql_policies);
                 <div class="content-right link-style3">
                     <h4 class="section-subtitle white wow fadeInUp">Khả năng của chúng tôi</h4>
                     <h3 class="section-title white wow fadeInUp">Đưa ra những giải pháp cho vấn đề của bạn</h3>
-                    <p class="section-desc white wow fadeInUp">Công Ty Cổ Phần Và Phát Triển Đô Thị T&Q có đội ngũ nhân viên có kỹ thuật, tay nghề chăm sóc cây chuyên nghiệp. Chúng tôi sẽ đáp ứng mọi nhu cầu của quý Khách hàng. </p>
+                    <p class="section-desc white wow fadeInUp">Công Ty Cổ Phần Và Phát Triển Đô Thị T&Q có đội ngũ nhân
+                        viên có kỹ thuật, tay nghề chăm sóc cây chuyên nghiệp. Chúng tôi sẽ đáp ứng mọi nhu cầu của quý
+                        Khách hàng. </p>
                 </div>
             </div>
         </div>
@@ -436,20 +488,23 @@ $policies = $db->fetchdata($sql_policies);
             <div class="col-md-4 wow fadeInUp">
                 <div class="contact-left">
                     <h3 class="section-subtitle">Liên hệ với chúng tôi</h3>
-                    <h2 class="section-title">Thông tin về công ty.</h2>
+                    <h2 class="section-title">Công ty Cổ Phần Phát Triển Đô Thị Xanh T&Q</h2>
                 </div>
             </div>
             <div class="col-md-8 wow fadeInUp">
                 <div class="contact-right">
-                    <form method="POST" class="form-contact-right" id="contactform" action="./pages/user_tb/index.php" accept-charset="utf-8" novalidate="novalidate">
+                    <form method="POST" class="form-contact-right" id="contactform" action="./pages/user_tb/index.php"
+                        accept-charset="utf-8" novalidate="novalidate">
                         <div class="input-row">
                             <div class="input-name">
                                 <label for="name" class="heading-features">Tên của bạn</label>
-                                <input id="name" name="user_name" class="input-contact" type="text" placeholder="" required>
+                                <input id="name" name="user_name" class="input-contact" type="text" placeholder=""
+                                    required>
                             </div>
                             <div class="input-phone">
                                 <label for="phone" class="heading-features">Số điện thoại</label>
-                                <input id="phone" name="user_number_phone" class="input-contact" type="text" placeholder="" required>
+                                <input id="phone" name="user_number_phone" class="input-contact" type="text"
+                                    placeholder="" required>
                             </div>
 
                         </div>
@@ -462,18 +517,21 @@ $policies = $db->fetchdata($sql_policies);
                                 <label for="services" class="heading-features">Dịch vụ</label>
                                 <select class="input-contact input-select" name="service_gr_id" id="services">
                                     <?php foreach ($service_group as $item) : ?>
-                                        <option value="<?php echo $item['service_gr_id'] ?>"><?php echo $item['service_gr_name'] ?></option>
+                                    <option value="<?php echo $item['service_gr_id'] ?>">
+                                        <?php echo $item['service_gr_name'] ?></option>
                                     <? endforeach ?>
                                 </select>
                             </div>
                         </div>
                         <div class="input-address">
                             <label for="user_address" class="heading-features">Địa chỉ</label>
-                            <input id="address" name="user_address" class="input-contact" type="text" placeholder="" required>
+                            <input id="address" name="user_address" class="input-contact" type="text" placeholder=""
+                                required>
                         </div>
                         <div class="input-message">
                             <label for="message" class="heading-features">Tin nhắn</label>
-                            <textarea name="user_cmt" class="input-contact-message" id="message" placeholder=""></textarea>
+                            <textarea name="user_cmt" class="input-contact-message" id="message"
+                                placeholder=""></textarea>
                         </div>
                         <div class="button">
                             <button type="submit" class=" btn btn-left">Gửi thông tin</button>
@@ -494,7 +552,9 @@ $policies = $db->fetchdata($sql_policies);
                         <div class="info">
                             <h3 class="section-heading-jost-size20">
                                 Số điện thoại</h3>
-                            <p class="desc-box"><a href="tel:<?php echo $company['company_mobile'] ?>"><?php echo $company['company_mobile'] ?></a></p>
+                            <p class="desc-box"><a
+                                    href="tel:<?php echo $company['company_mobile'] ?>"><?php echo $company['company_mobile'] ?></a>
+                            </p>
                         </div>
                     </div>
                     <div class="address-box box-3">
@@ -502,7 +562,9 @@ $policies = $db->fetchdata($sql_policies);
                         <div class="info">
                             <h3 class="section-heading-jost-size20">
                                 Email</h3>
-                            <p class="desc-box"><a href="mailto:<?php echo $company['company_email'] ?>"><?php echo $company['company_email'] ?></a></p>
+                            <p class="desc-box"><a
+                                    href="mailto:<?php echo $company['company_email'] ?>"><?php echo $company['company_email'] ?></a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -524,28 +586,32 @@ $policies = $db->fetchdata($sql_policies);
                 <div class="slide-blog-content">
                     <div class="owl-carousel owl-theme">
                         <?php foreach ($post as $item) : ?>
-                            <div class="item wow fadeInUp">
-                                <div style="background-image:url('./pages/post/photo/<?php echo $item["post_image1"] ?>');" class="blog-item hover-up-style2">
-                                    <div class="item-overlay"></div>
-                                    <div class="item-box link">
-                                        <div class="content-info"><a href="blog.html" class="folder">
-                                                <?php echo $item['post_type_title']; ?>
+                        <div class="item wow fadeInUp">
+                            <div style="background-image:url('./pages/post/photo/<?php echo $item["post_image1"] ?>');"
+                                class="blog-item hover-up-style2">
+                                <div class="item-overlay"></div>
+                                <div class="item-box link">
+                                    <div class="content-info"><a href="blog.html" class="folder">
+                                            <?php echo $item['post_type_title']; ?>
+                                        </a></div>
+                                    <div class="link-style6">
+                                        <div class="content-info margin-top"><a
+                                                href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>"
+                                                class="user">
+                                                By Admin
                                             </a></div>
-                                        <div class="link-style6">
-                                            <div class="content-info margin-top"><a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>" class="user">
-                                                    By Admin
-                                                </a></div>
-                                            <a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>" class="section-heading-jost-size20">
-                                                <?php echo $item['post_title']; ?>
-                                            </a>
-                                        </div>
-                                        <hr class="line-blog-item">
-                                        <h4 class="sub-title">
-                                            <?php echo $item['post_datetime_update']; ?>
-                                        </h4>
+                                        <a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>"
+                                            class="section-heading-jost-size20">
+                                            <?php echo $item['post_title']; ?>
+                                        </a>
                                     </div>
+                                    <hr class="line-blog-item">
+                                    <h4 class="sub-title">
+                                        <?php echo $item['post_datetime_update']; ?>
+                                    </h4>
                                 </div>
                             </div>
+                        </div>
                         <?php endforeach ?>
                     </div>
                 </div>
