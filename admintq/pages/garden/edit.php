@@ -71,7 +71,25 @@ require_once(__DIR__ . '/../../layout/header.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+                    <form action="./link_img.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Link ảnh</label>
+                            <div style="margin-bottom: 1%;" class="col-sm-8">
+                                <div class="row">
+                                    <input type="file" class='form-control-file col-sm-5' id="exampleFormControlFile1" name='pages_img_name'>
+                                    <button type="submit" class="btn btn-success col-sm-2" name="submit">Lấy link URL</button>
+                                </div>
+                                <?php
+                                    if(isset($_SESSION['link_img']))
+                                    {
+                                        echo $_SESSION['link_img'];
+                                        unset($_SESSION['link_img']);
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Website</label>
                             <div class="col-sm-8">
@@ -86,16 +104,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Mô tả</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Mô tả" name='garden_description' value="<?php echo $garden['garden_description']?>">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Link ảnh</label>
-                            <div style="margin-bottom: 1%;" class="col-sm-8">
-                                <form  action="<?php base_url()?>" method="POST" enctype="multipart/form-data">
-                                    <input type="file" class='form-control-file' id="exampleFormControlFile1" name='link_img'>
-                                </form>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Mô tả" name='garden_description' value="<?php echo $garden['garden_description'] ?>">
                             </div>
                         </div>
 
@@ -110,7 +119,7 @@ require_once(__DIR__ . '/../../layout/header.php');
 
                         <div class="from-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Lưu</button>
+                                <button type="submit" class="btn btn-success" name="submit" value="submit">Lưu</button>
                             </div>
                         </div>
                     </form>
