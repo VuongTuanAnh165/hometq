@@ -1,7 +1,10 @@
 <?php
-    require_once ( __DIR__ . '/../autoload/autoload.php');
-    $sql="SELECT *  FROM company";
-    $company = $db->fetchdata($sql);
+require_once(__DIR__ . '/../autoload/autoload.php');
+if (!isset($_SESSION["username"])) {
+    header("location:http://hometq.com/admintq/login.php");
+}
+$sql = "SELECT *  FROM company";
+$company = $db->fetchdata($sql);
 ?>
 
 <!DOCTYPE html>
@@ -15,23 +18,23 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/fontawesome-free/css/all.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url()?>dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>dist/css/adminlte.min.css">
     <!-- icon bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/summernote/summernote-bs4.min.css">
     <!-- CodeMirror -->
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/codemirror/codemirror.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/codemirror/theme/monokai.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/codemirror/codemirror.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/codemirror/theme/monokai.css">
     <!-- SimpleMDE -->
-    <link rel="stylesheet" href="<?php echo base_url()?>plugins/simplemde/simplemde.min.css">
- 
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/simplemde/simplemde.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -39,7 +42,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="<?php echo base_url();?>dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="<?php echo base_url(); ?>dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -70,8 +73,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="<?php echo base_url();?>index.php" class="brand-link">
-                <img src="<?php echo base_url();?>pages/company/photo/<?php echo $company[0]['company_logo'] ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="<?php echo base_url(); ?>index.php" class="brand-link">
+                <img src="<?php echo base_url(); ?>pages/company/photo/<?php echo $company[0]['company_logo'] ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">MULTIPLE MANAGER</span>
             </a>
 
@@ -129,13 +132,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/service/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/service/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Danh sách dịch vụ</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/service_group/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/service_group/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Nhóm dịch vụ</p>
                                     </a>
@@ -152,7 +155,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/project/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/project/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Danh sách dự án</p>
                                     </a>
@@ -169,13 +172,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/post/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/post/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Danh sách bài viết</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/post_type/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/post_type/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Nhóm bài viết</p>
                                     </a>
@@ -193,7 +196,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/garden/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/garden/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Quản lý Blog </p>
                                     </a>
@@ -211,7 +214,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/user_tb/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/user_tb/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Quản lý khách hàng</p>
                                     </a>
@@ -229,7 +232,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/policies/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/policies/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Quản lý chính sách</p>
                                     </a>
@@ -246,7 +249,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/website_config/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/website_config/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Quản lý website</p>
                                     </a>
@@ -263,7 +266,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>pages/company/index.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>pages/company/index.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Quản lý công ty</p>
                                     </a>
@@ -281,13 +284,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>recover-password.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>recover-password.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Đổi mật khẩu</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url();?>logout.php" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>logout.php" class="nav-link">
                                         <i class="bi bi-play nav-icon"></i>
                                         <p>Đăng xuất</p>
                                     </a>
