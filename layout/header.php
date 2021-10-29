@@ -66,6 +66,9 @@ $post_type = $db->fetchdata($sql_post_type);;
     <!-- icoomon font -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>stylesheet/icomoon.css">
 
+    <!-- slider -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>stylesheet/slider.css">
+
     <!-- Favicon and touch icons  -->
     <link href="<?php echo base_url() ?>icon/Favicon.png" rel="apple-touch-icon-precomposed">
     <link href="<?php echo base_url() ?>icon/Favicon.png" rel="apple-touch-icon-precomposed">

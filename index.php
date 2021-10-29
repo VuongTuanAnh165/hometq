@@ -45,97 +45,18 @@ $policies = $db->fetchdata($sql_policies);
 ?>
 
 <!-- page title -->
-<div class="page-title-home1">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="inner-title-home1">
-                <!-- /.page-title -->
-                <div class="flat-slider clearfix">
-                    <div class="rev_slider_wrapper fullwidthbanner-container">
-                        <div id="rev-slider2" class="rev_slider fullwidthabanner">
-                            <ul>
-                                <!-- Slide 1 -->
-                                <?php foreach ($service as $item) : ?>
-                                <li data-transition="random">
-                                    <!-- Main Image -->
-                                    <!-- Layers -->
-                                    <div class="tp-caption tp-resizeme text-one"
-                                        data-x="['left','left','left','center']" data-hoffset="['0','0','0','0']"
-                                        data-y="['middle','middle','middle','middle']"
-                                        data-voffset="['-274','-50','-50','-50']" data-fontsize="['16','0','0','0']"
-                                        data-lineheight="['20','0','0','0']" data-width="full" data-height="none"
-                                        data-whitespace="normal" data-transform_idle="o:1;"
-                                        data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                                        data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;"
-                                        data-start="700" data-splitin="none" data-splitout="none"
-                                        data-responsive_offset="on">
-                                        <h3 class="sub-title">DỊCH VỤ</h3>
-                                    </div>
-
-                                    <div class="tp-caption tp-resizeme text-two"
-                                        data-x="['left','left','left','center']" data-hoffset="['-2','-2','5','0']"
-                                        data-y="['middle','middle','middle','middle']"
-                                        data-voffset="['-130','-165',10','-15']" data-fontsize="['60','70','50','60']"
-                                        data-lineheight="['70','80','64','48']" data-width="full" data-height="none"
-                                        data-whitespace="normal" data-transform_idle="o:1;"
-                                        data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                                        data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;"
-                                        data-start="700" data-splitin="none" data-splitout="none"
-                                        data-responsive_offset="on">
-                                        <div class="title-box">
-                                            <h2 class="title-slider text-pri2-color"><?php echo $item['service_name'] ?>
-                                            </h2>
-                                        </div>
-                                    </div>
-
-                                    <div class="tp-caption btn-text btn-linear hv-linear-gradient"
-                                        data-x="['left','left','left','center']" data-hoffset="['-3','-3','5','0']"
-                                        data-y="['middle','middle','middle','middle']"
-                                        data-voffset="['48','40','180','300']" data-width="full" data-height="none"
-                                        data-whitespace="normal" data-transform_idle="o:1;"
-                                        data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                                        data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;"
-                                        data-start="700" data-splitin="none" data-splitout="none"
-                                        data-responsive_offset="on">
-                                        <div class="button-box">
-                                            <div class="button res-btn-slider">
-                                                <a href="#" class="btn btn-left">Liên hệ</a>
-                                            </div>
-                                            <div class="button">
-                                                <a href="#" class="btn">Xem thêm</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tp-caption tp-resizeme image-slider text-right "
-                                        data-x="['right','right','right','right']"
-                                        data-hoffset="['-29','-29','-150','-29']"
-                                        data-y="['center','center','center','center']"
-                                        data-voffset="['-88','-88','60','-88']" data-width="full" data-height="none"
-                                        data-whitespace="normal" data-transform_idle="o:1;"
-                                        data-transform_in="y:0;z:[100%];rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
-                                        data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
-                                        data-mask_in="x:[100%];y:0px;" data-mask_out="x:inherit;y:inherit;"
-                                        data-start="900" data-splitin="none" data-splitout="none"
-                                        data-responsive_offset="on">
-                                        <?php echo "<img class='img-slide wow jackInTheBox' data-wow-delay='2500ms' data-wow-duration='3s' src='./pages_img/service/photo/" . $item['service_image'] . "' alt='' style='margin-top:-5%'>" ?>
-                                    </div>
-                                </li>
-                                <!-- /End Slide 1 -->
-                                <?php endforeach ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- flat-slider -->
-            </div>
-
-        </div>
-
+<section class="auto-slider">
+            <div id="slider">
+                <figure>
+                    <img src="./pages_img/slider_image/slide_1.jpeg" alt="Image">
+                    <img src="./pages_img/slider_image/slide_2.jpeg" alt="Image">
+                    <img src="./pages_img/slider_image/slide_3.jpeg" alt="Image">
+                    <img src="./pages_img/slider_image/slide_1.jpeg" alt="Image">
+                    <img src="./pages_img/slider_image/slide_2.jpeg" alt="Image">
+                </figure>
+                <div class="indicator"></div>
     </div>
-</div>
+</section>
 <!-- /.page-title -->
 
 <!-- features -->
