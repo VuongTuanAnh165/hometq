@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
 
     if (postInput('post_title') == '') {
-        echo "<script>alert('Mời bạn nhập đầy đủ tên dịch vụ');</script>";
+        echo "<script>alert('Mời bạn nhập đầy đủ tên bài viết');</script>";
     } else {
         if (in_array($file_ext, $expensions) === false) {
             echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
