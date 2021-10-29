@@ -68,7 +68,7 @@ $policies = $db->fetchdata($sql_policies);
                     <div class="features-box">
                         <span class="tf-icon icon-hand-gloves"></span>
                         <div class="content-features">
-                            <a href="service-details.html">
+                            <a href="#">
                                 <h3 class="section-heading-rubik-size20">
                                     Chuyên nghiệp
                                 </h3>
@@ -85,7 +85,7 @@ $policies = $db->fetchdata($sql_policies);
                     <div class="features-box">
                         <span class="tf-icon icon-fruit-box"></span>
                         <div class="content-features">
-                            <a href="service-details.html">
+                            <a href="#">
                                 <h3 class="section-heading-rubik-size20">
                                     Sáng tạo
                                 </h3>
@@ -102,7 +102,7 @@ $policies = $db->fetchdata($sql_policies);
                     <div class="features-box">
                         <span class="tf-icon icon-seed"></span>
                         <div class="content-features">
-                            <a href="service-details.html">
+                            <a href="#">
                                 <h3 class="section-heading-rubik-size20">
                                     Màu xanh
                                 </h3>
@@ -119,7 +119,7 @@ $policies = $db->fetchdata($sql_policies);
                     <div class="features-box">
                         <span class="tf-icon icon-seed"></span>
                         <div class="content-features">
-                            <a href="service-details.html">
+                            <a href="#">
                                 <h3 class="section-heading-rubik-size20">
                                     Hiệu quả
                                 </h3>
@@ -171,7 +171,7 @@ $policies = $db->fetchdata($sql_policies);
                         <div class="section-desc"><?php echo $company['company_description'] ?></div>
                     </div>
                     <div class="button hover-up">
-                        <a href="contact.html" class="btn2">Xem thêm</a>
+                        <a href="<?php echo base_url()?>pages/user_tb/index.php" class="btn2">Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -512,7 +512,7 @@ $policies = $db->fetchdata($sql_policies);
                                 class="blog-item hover-up-style2">
                                 <div class="item-overlay"></div>
                                 <div class="item-box link">
-                                    <div class="content-info"><a href="blog.html" class="folder">
+                                    <div class="content-info"><a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>" class="folder">
                                             <?php echo $item['post_type_title']; ?>
                                         </a></div>
                                     <div class="link-style6">

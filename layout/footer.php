@@ -6,7 +6,7 @@
                 <div class="top-footer wow fadeInDown">
                     <div class="top-footer-left">
                         <div class="logo-footer">
-                            <a href="index.html"><img
+                            <a href="<?php echo base_url()?>index.php"><img
                                     src="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo']?>"
                                     alt="images" width="150px" height="60px"></a>
                         </div>
@@ -88,7 +88,7 @@
                             <ul class="list-menu-2 text-decs link-style4">
                                 <?php foreach ($policies as $item) : ?>
                                 <li><a class="heading-menu2"
-                                        href="services.html"><?php echo $item['policies_title'] ?></a> </li>
+                                        href="#"><?php echo $item['policies_title'] ?></a> </li>
                                 <?php endforeach ?>
                             </ul>
                         </div>
