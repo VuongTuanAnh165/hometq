@@ -23,19 +23,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "pages_img_name" => $pages_img_name,
             "pages_img_link" => base_img($pages_img_gr["pages_img_gr_name"]) . "photo/" . $pages_img_name
         ];
-
-    if (in_array($file_ext, $expensions) === false) {
-        echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
+    /*$sql_check = "SELECT * FROM pages_img WHERE pages_img_name='$pages_img_name'";
+    $pages_img = $db->fetchcheck($sql_check);*/
+    if (file_exists($target)==1) {
+        echo "<script>alert('Tên file đã tồn tại! vui lòng đặt tên khác.');</script>";
     } else {
-        if ($file_size > 2097152) {
-            echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
+        if (in_array($file_ext, $expensions) === false) {
+            echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
         } else {
-            $id_insert = $db->insert("pages_img", $data);
-            if ($id_insert > 0 && move_uploaded_file($_FILES['pages_img_name']['tmp_name'], $target)) {
-                $_SESSION['success'] = " Thêm mới thành công ";
-                redirectAdmin($open);
+            if ($file_size > 2097152) {
+                echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
             } else {
-                $_SESSION['error'] = " Thêm mới thất bại ";
+                $id_insert = $db->insert("pages_img", $data);
+                if ($id_insert > 0 && move_uploaded_file($_FILES['pages_img_name']['tmp_name'], $target)) {
+                    $_SESSION['success'] = " Thêm mới thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Thêm mới thất bại ";
+                }
             }
         }
     }
