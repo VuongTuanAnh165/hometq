@@ -20,22 +20,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data =
         [
             "pages_img_gr_id" => postInput('pages_img_gr_id'),
-            "pages_img_name" => $pages_img_name,
-            "pages_img_link" => base_img($pages_img_gr["pages_img_gr_name"]) . "photo/" . $pages_img_name
+            "pages_img_name" => postInput('new_file') . "." . postInput('new_end'),
+            "pages_img_link" => base_img($pages_img_gr["pages_img_gr_name"]) . "photo/" . postInput('new_file') . "." . postInput('new_end')
         ];
-
-    if (in_array($file_ext, $expensions) === false) {
-        echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
+    if (postInput('new_file') == '') {
+        echo "<script>alert('Mời bạn nhập đầy đủ tên file mới');</script>";
     } else {
-        if ($file_size > 2097152) {
-            echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
+        if (in_array($file_ext, $expensions) === false) {
+            echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
         } else {
-            $id_insert = $db->insert("pages_img", $data);
-            if ($id_insert > 0 && move_uploaded_file($_FILES['pages_img_name']['tmp_name'], $target)) {
-                $_SESSION['success'] = " Thêm mới thành công ";
-                redirectAdmin($open);
+            if ($file_size > 2097152) {
+                echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
             } else {
-                $_SESSION['error'] = " Thêm mới thất bại ";
+                $id_insert = $db->insert("pages_img", $data);
+                if ($id_insert > 0 && move_uploaded_file($_FILES['pages_img_name']['tmp_name'], $target) && rename($target, "../../../pages_img/" . $pages_img_gr["pages_img_gr_name"] . "/photo/" . postInput('new_file') . "." . postInput('new_end'))) {
+                    $_SESSION['success'] = " Thêm mới thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Thêm mới thất bại ";
+                }
             }
         }
     }
@@ -71,6 +74,7 @@ require_once(__DIR__ . '/../../layout/header.php');
             <div class="row">
                 <div class="col-12">
                     <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Folder</label>
                             <div class="col-sm-8">
@@ -88,6 +92,24 @@ require_once(__DIR__ . '/../../layout/header.php');
                                 <input type="file" class='form-control-file' id="exampleFormControlFile1" name='pages_img_name' onchange="preview_thumbail_logo(this);">
 
                                 <img id="logo" src="#" alt="your image">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-lable">Tên file mới</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên file mới" name='new_file'>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-lable">Đuôi file</label>
+                            <div class="col-sm-8">
+                                <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="new_end">
+                                    <option value="jpg">jpg</option>
+                                    <option value="png">png</option>
+                                    <option value="jpeg">jpeg</option>
+                                </select>
                             </div>
                         </div>
 
