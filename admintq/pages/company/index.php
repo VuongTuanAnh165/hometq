@@ -64,7 +64,7 @@
                                         <tr>
                                             <td><?php echo $stt ?></td>
                                             <td><?php echo $item['company_name'] ?></td>
-                                            <td><?php echo "<img width=100px src='photo/" . $item['company_logo'] . "'>" ?></td>
+                                            <td><img width="100px" src="<?php echo base_img("company")?>photo/<?php echo $item['company_logo'] ?>"></td>
                                             <td><?php echo $item['company_email'] ?></td>
                                             <td><?php echo $item['company_address'] ?></td>
                                             <td><?php echo $item['company_phone'] ?></td>

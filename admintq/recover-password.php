@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password_new = md5($password_new);
     $id_update = $db->update("admin", array("password" => $password_new), array("username" => $username));
     if ($id_update > 0) {
-      echo "Đổi mật khẩu thành công";
+      echo '<script>alert("Mật khẩu không thay đổi")</script>';
       header("location:index.php");
     } else {
       echo '<script>alert("Mật khẩu không thay đổi")</script>';

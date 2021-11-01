@@ -246,23 +246,6 @@ $company = $db->fetchdata($sql);
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-gear"></i>
-                                <p>
-                                    Cài đặt website
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>pages/website_config/index.php" class="nav-link">
-                                        <i class="bi bi-play nav-icon"></i>
-                                        <p>Quản lý website</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-puzzle"></i>
                                 <p>
                                     Cài đặt chung

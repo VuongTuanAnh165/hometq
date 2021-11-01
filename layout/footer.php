@@ -97,7 +97,7 @@
                             <p class="heading-jost-20px">
                                 Bản đồ
                             </p>
-                            <iframe
+                            <iframe class="text-decs"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3108.92751944692!2d105.7975575103029!3d21.034693068973965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab40a938cc61%3A0xc85d3ac4f97150af!2zNjkgRMawxqFuZyBRdeG6o25nIEjDoG0sIFF1YW4gSG9hLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1635145148955!5m2!1svi!2s"
                                 width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
@@ -132,7 +132,7 @@
 
 <!--====== Start Call-zalo ======-->
 <div class="global-thread-create-ctas swap-positions">
-    <a href="https://zalo.me/0862048266 " title="0862048266 " target="" rel="nofollow">
+    <a href="https://zalo.me/0862048266 " title="0862048266 " target="_blank" rel="nofollow">
         <div class="zalo"></div>
     </a>
 </div>

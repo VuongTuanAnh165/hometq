@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file_ext = strtolower(end($file_parts));
     $expensions = array("jpeg", "jpg", "png");
 
-    $project_img = $_FILES['project_img']['name'];
+    $project_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
     $target = "../../../pages_img/project/photo/s" . basename($project_img);
     $data =
         [
@@ -33,6 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "project_status" => postInput('project_status'),
             "web_id" => postInput('web_id'),
             "project_content" => postInput('project_content')
+        ];
+    $data_img =
+        [
+            "pages_img_gr_id" => 6,
+            "pages_img_name" => $project_img,
+            "pages_img_link" => base_img("project") . "photo/" . $project_img
         ];
     if (postInput('project_name') == '') {
         echo "<script>alert('Mời bạn nhập đầy đủ tên dự án');</script>";
@@ -45,7 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 if ($post['project_name'] != $data['project_name']) {
                     $id_update = $db->update("project", $data, array("project_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -54,7 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } else {
                     $id_update = $db->update("project", $data, array("project_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -96,23 +104,6 @@ require_once(__DIR__ . '/../../layout/header.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="./link_img.php" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Link ảnh</label>
-                            <div style="margin-bottom: 1%;" class="col-sm-8">
-                                <div class="row">
-                                    <input type="file" class='form-control-file col-sm-5' id="exampleFormControlFile1" name='pages_img_name'>
-                                    <button type="submit" class="btn btn-success col-sm-2" name="submit">Lấy link URL</button>
-                                </div>
-                                <?php
-                                if (isset($_SESSION['link_img'])) {
-                                    echo $_SESSION['link_img'];
-                                    unset($_SESSION['link_img']);
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    </form>
                     <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">

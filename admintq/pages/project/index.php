@@ -61,7 +61,7 @@
                                         <tr>
                                             <td><?php echo $stt ?></td>
                                             <td><?php echo $item['project_name'] ?></td>
-                                            <td><?php echo "<img width=100px src='photo/" . $item['project_img'] . "'>" ?></td>
+                                            <td><img width="100px" src="<?php echo base_img("project")?>photo/<?php echo  $item['project_img'] ?>"></td>
                                             <td><?php echo $item['project_description'] ?></td>                                            
                                             <td><?php echo $item['project_status'] ?></td>
                                             <td><?php echo $item['web_name'] ?></td>

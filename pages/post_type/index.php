@@ -37,7 +37,7 @@
                 <div class="themesflat-spacer clearfix" data-desktop="120" data-mobile="60" data-smobile="60"></div>
             </div>
             <?php foreach($post_type as $item): ?>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="list-box-profolio wow fadeInDown">
                         <div class="image-profolio bd-radius-8-image">
                             <img src="<?php echo base_img('post_type')?>photo/<?php echo $item['post_type_img'] ?>" alt="images">
