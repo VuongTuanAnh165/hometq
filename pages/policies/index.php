@@ -3,9 +3,9 @@
 <?php
 require_once(__DIR__ . '/../../autoload/autoload.php');
 $id = intval(getInput('id'));
-//Vườn garden
-$sql_garden = "SELECT * FROM garden WHERE  garden_active=1";
-$garden = $db->fetchdata($sql_garden);
+//Vườn policies
+$sql_policies = "SELECT * FROM policies WHERE policies_id=$id AND policies_active=1";
+$policies_check = $db->fetchcheck($sql_policies);
 
 ?>
 
@@ -14,14 +14,14 @@ $garden = $db->fetchdata($sql_garden);
 <div class="page-title">
     <div class="container-fluid">
         <div class="row">
-            <div style="background-image: url(https://anhdep123.com/wp-content/uploads/2020/04/v%C6%B0%E1%BB%9Dn-hoa-t%E1%BA%A1i-nh%C3%A0-tuy%E1%BB%87t-%C4%91%E1%BA%B9p-1024x640.jpg);" class="inner-title">
+            <div style="background-image: url(https://hanoispiritofplace.com/wp-content/uploads/2017/12/hinh-anh-cuon-sach-dep-6.jpg);" class="inner-title">
                 <div class="overlay-image"></div>
                 <div class="banner-title">
                     <div class="page-title-heading">
-                        Vườn đẹp An Nhiên
+                        Chính sách
                     </div>
                     <div class="page-title-content link-style6">
-                        <span><a class="home" href="<?php echo base_url() ?>index.php">Trang chủ</a></span><span class="page-title-content-inner">Vườn đẹp An Nhiên</span>
+                        <span><a class="home" href="<?php echo base_url() ?>index.php">Trang chủ</a></span><span class="page-title-content-inner">Chính sách</span>
                     </div>
                 </div>
             </div>
@@ -38,14 +38,10 @@ $garden = $db->fetchdata($sql_garden);
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="section-heading-jost-size46 fw-500 text-pri2-color center mg-bottom-50 ">Blog Vườn đẹp</h3>
+                <h3 class="section-heading-jost-size46 fw-500 text-pri2-color center mg-bottom-50 "><?php echo $policies_check['policies_title'] ?></h3>
             </div>
-            <div class="col-md-12">
-                <?php foreach($garden as $item): ?>
-                    <div style="margin: 2% 0%;" class="col-md-6">
-                        <?php echo $item['garden_content'] ?>
-                    </div>
-                <?php endforeach ?>
+            <div class="fw-500 text-pri2-color mg-bottom-50">
+            <?php echo $policies_check['policies_content'] ?>
             </div>
         </div>
     </div>

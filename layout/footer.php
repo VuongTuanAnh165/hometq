@@ -87,8 +87,7 @@
                             </p>
                             <ul class="list-menu-2 text-decs link-style4">
                                 <?php foreach ($policies as $item) : ?>
-                                <li><a class="heading-menu2"
-                                        href="#"><?php echo $item['policies_title'] ?></a> </li>
+                                <li><a class="heading-menu2" href="<?php echo base_url()?>pages/policies/index.php?id=<?php echo $item['policies_id'] ?>"><?php echo $item['policies_title'] ?></a> </li>
                                 <?php endforeach ?>
                             </ul>
                         </div>
