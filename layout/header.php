@@ -48,7 +48,7 @@ $post_type = $db->fetchdata($sql_post_type);;
     <!-- Basic Page Needs -->
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>T&Q | Giới thiệu công ty</title>
+    <title>Vườn đẹp An Nhiên</title>
 
     <meta name="author" content="themesflat.com">
     <!-- Mobile Specific Metas -->
@@ -70,9 +70,9 @@ $post_type = $db->fetchdata($sql_post_type);;
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>stylesheet/slider.css">
 
     <!-- Favicon and touch icons  -->
-    <link href="<?php echo base_url() ?>icon/Favicon.png" rel="apple-touch-icon-precomposed">
-    <link href="<?php echo base_url() ?>icon/Favicon.png" rel="apple-touch-icon-precomposed">
-    <link href="<?php echo base_url() ?>icon/Favicon.png" rel="shortcut icon">
+    <link href="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo'] ?>" rel="apple-touch-icon-precomposed">
+    <link href="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo'] ?>" rel="apple-touch-icon-precomposed">
+    <link href="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo'] ?>" rel="shortcut icon">
 
     <!-- anime -->
     <link rel="stylesheet" href="<?php echo base_url() ?>stylesheet/animate.css">

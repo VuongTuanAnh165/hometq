@@ -13,7 +13,7 @@ $company = $db->fetchdata($sql);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Admin-Vườn An Nhiên</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -34,6 +34,11 @@ $company = $db->fetchdata($sql);
     <link rel="stylesheet" href="<?php echo base_url() ?>plugins/codemirror/theme/monokai.css">
     <!-- SimpleMDE -->
     <link rel="stylesheet" href="<?php echo base_url() ?>plugins/simplemde/simplemde.min.css">
+    <!-- Favicon and touch icons  -->
+    <link href="<?php echo base_img('company') ?>photo/<?php echo $company[0]['company_logo'] ?>" rel="apple-touch-icon-precomposed">
+    <link href="<?php echo base_img('company') ?>photo/<?php echo $company[0]['company_logo'] ?>" rel="apple-touch-icon-precomposed">
+    <link href="<?php echo base_img('company') ?>photo/<?php echo $company[0]['company_logo'] ?>" rel="shortcut icon">
+
 
 </head>
 
