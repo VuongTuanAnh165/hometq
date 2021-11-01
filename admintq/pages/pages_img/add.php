@@ -1,8 +1,8 @@
 <?php
 $open = "pages_img";
 require_once(__DIR__ . '/../../autoload/autoload.php');
-$sql = "SELECT * FROM pages_img_gr";
-$pages_img_gr = $db->fetchdata($sql);
+$sql_data="SELECT * FROM pages_img_gr";
+$pages_img_gr_data = $db->fetchdata($sql_data);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pages_img_gr_id = $_POST['pages_img_gr_id'];
@@ -79,7 +79,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                             <label for="inputEmail3" class="col-sm-2 control-lable">Folder</label>
                             <div class="col-sm-8">
                                 <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="pages_img_gr_id">
-                                    <?php foreach ($pages_img_gr as $item) : ?>
+                                    <?php foreach ($pages_img_gr_data as $item) : ?>
                                         <option value="<?php echo $item['pages_img_gr_id'] ?>"><?php echo $item['pages_img_gr_name'] . " (" . $item['pages_img_gr_description'] . ")"; ?></option>
                                     <? endforeach ?>
                                 </select>
