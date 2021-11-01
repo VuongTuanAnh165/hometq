@@ -48,6 +48,7 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Hình ảnh</th>
+                                        <th>Folder</th>
                                         <th>Link ảnh</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -57,6 +58,7 @@
                                         <tr>
                                             <td><?php echo $stt?></td>
                                             <td><img width="100px" src="<?php echo base_img($item['pages_img_gr_name'])?>photo/<?php echo $item['pages_img_name']?>" ></td>
+                                            <th><?php echo $item['pages_img_gr_name']." (".$item['pages_img_gr_description'].")" ?></th>
                                             <th><?php echo $item['pages_img_link'] ?></th>
                                             <td>
                                                 <a class="btn btn-xs btn-danger" href='delete.php?id=<?php echo $item["pages_img_id"] ?>'><i class="fa fa-times"></i>Xóa</a>
@@ -68,6 +70,7 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Hình ảnh</th>
+                                        <th>Folder</th>
                                         <th>Link ảnh</th>
                                         <th>Hành động</th>
                                     </tr>

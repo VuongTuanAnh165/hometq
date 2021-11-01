@@ -22,11 +22,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "user_cmt" => $_POST['user_cmt']
         ];
 
-    $id_insert = $db->insert("user_tb", $data);
-    if ($id_insert > 0) {
-        echo '<script>alert("Gửi thành công")</script>';
+    if ($_POST['user_name'] == '') {
+        echo '<script>alert("Mời quý khách nhập đầy đủ họ tên")</script>';
     } else {
-        echo "<script>alert('Gửi thất bại')</script>";
+        if ($_POST['user_number_phone'] == '') {
+            echo '<script>alert("Mời quý khách nhập số điện thoại")</script>';
+        } else {
+            if ($_POST['user_address']) {
+                echo '<script>alert("Mời quý khách nhập địa chỉ")</script>';
+            } else {
+                $id_insert = $db->insert("user_tb", $data);
+                if ($id_insert > 0) {
+                    echo '<script>alert("Cảm ơn bạn đã gửi thông tin")</script>';
+                } else {
+                    echo "<script>alert('Gửi không thành, yêu cầu bạn nhập đầy đủ thông tin')</script>";
+                }
+            }
+        }
     }
 }
 

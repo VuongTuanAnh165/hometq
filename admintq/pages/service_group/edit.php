@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file_ext = strtolower(end($file_parts));
     $expensions = array("jpeg", "jpg", "png");
 
-    $service_gr_img = $_FILES['service_gr_img']['name'];
+    $service_gr_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
     $target = "../../../pages_img/service_group/photo/" . basename($service_gr_img);
     $data =
         [
@@ -31,7 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "web_id" => postInput('web_id'),
             "service_gr_img" => $service_gr_img
         ];
-
+    $data_img =
+        [
+            "pages_img_gr_id" => 8,
+            "pages_img_name" => $service_gr_img,
+            "pages_img_link" => base_img("service_group") . "photo/" . $service_gr_img
+        ];
     if (postInput('service_gr_name') == '') {
         echo "<script>alert('Mời bạn nhập đầy đủ tên dịch vụ');</script>";
     } else {
@@ -43,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 if ($post['service_gr_name'] != $data['service_gr_name']) {
                     $id_update = $db->update("service_group", $data, array("service_gr_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['service_gr_img']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['service_gr_img']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -52,7 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } else {
                     $id_update = $db->update("service_group", $data, array("service_gr_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['service_gr_img']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['service_gr_img']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -94,7 +101,7 @@ require_once(__DIR__ . '/../../layout/header.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form class="form-horizontal" action="" method="POST">
+                    <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Website</label>
@@ -122,7 +129,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                             <label for="exampleFormControlFile1">Ảnh nền</label>
                             <div class="col-sm-8">
                                 <input type="file" class='form-control-file' id="exampleFormControlFile1" name='service_gr_img' onchange="preview_thumbail1(this);">
-                                <img id="anh1" src="<?php echo base_img('service_group')?>photo/<?php echo $service['service_gr_img'] ?>" alt="your image">
+                                <img id="anh1" src="<?php echo base_img('service_group') ?>photo/<?php echo $service['service_gr_img'] ?>" alt="your image">
                             </div>
                         </div>
 

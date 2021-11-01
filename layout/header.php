@@ -83,11 +83,7 @@ $post_type = $db->fetchdata($sql_post_type);;
 <body>
     <div class="boxed blog">
         <!-- Preloader -->
-        <div class="preloader">
-            <div class="clear-loading loading-effect-2">
-                <span></span>
-            </div>
-        </div>
+        
 
         <!-- header -->
         <header id="header" class="header header-style2 bg-color">

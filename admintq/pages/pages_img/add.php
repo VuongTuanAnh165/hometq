@@ -1,7 +1,7 @@
 <?php
 $open = "pages_img";
 require_once(__DIR__ . '/../../autoload/autoload.php');
-$sql_data="SELECT * FROM pages_img_gr";
+$sql_data = "SELECT * FROM pages_img_gr";
 $pages_img_gr_data = $db->fetchdata($sql_data);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,21 +23,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "pages_img_name" => postInput('new_file') . "." . postInput('new_end'),
             "pages_img_link" => base_img($pages_img_gr["pages_img_gr_name"]) . "photo/" . postInput('new_file') . "." . postInput('new_end')
         ];
-    if (postInput('new_file') == '') {
-        echo "<script>alert('Mời bạn nhập đầy đủ tên file mới');</script>";
+    if (in_array($file_ext, $expensions) === false) {
+        echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
     } else {
-        if (in_array($file_ext, $expensions) === false) {
-            echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
+        if ($file_size > 2097152) {
+            echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
         } else {
-            if ($file_size > 2097152) {
-                echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
+            if (postInput('new_file') == '') {
+                echo "<script>alert('Mời bạn nhập đầy đủ tên file mới');</script>";
             } else {
-                $id_insert = $db->insert("pages_img", $data);
-                if ($id_insert > 0 && move_uploaded_file($_FILES['pages_img_name']['tmp_name'], $target) && rename($target, "../../../pages_img/" . $pages_img_gr["pages_img_gr_name"] . "/photo/" . postInput('new_file') . "." . postInput('new_end'))) {
-                    $_SESSION['success'] = " Thêm mới thành công ";
-                    redirectAdmin($open);
+                if (file_exists("../../../pages_img/" . $pages_img_gr["pages_img_gr_name"] . "/photo/" . postInput('new_file') . "." . postInput('new_end'))) {
+                    echo "<script>alert('Tên file đã tồn tại, vui lòng đổi tên');</script>";
                 } else {
-                    $_SESSION['error'] = " Thêm mới thất bại ";
+                    $id_insert = $db->insert("pages_img", $data);
+                    if ($id_insert > 0 && move_uploaded_file($_FILES['pages_img_name']['tmp_name'], $target) && rename($target, "../../../pages_img/" . $pages_img_gr["pages_img_gr_name"] . "/photo/" . postInput('new_file') . "." . postInput('new_end'))) {
+                        $_SESSION['success'] = " Thêm mới thành công ";
+                        redirectAdmin($open);
+                    } else {
+                        $_SESSION['error'] = " Thêm mới thất bại ";
+                    }
                 }
             }
         }

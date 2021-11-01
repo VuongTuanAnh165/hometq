@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="content-box">
                                 <div class="content-art">
-                                    <a href="blog-detail.html" class="section-heading-jost-size28">
+                                    <a href="post_details.php?id=<?php echo $item['post_id'] ?>" class="section-heading-jost-size28">
                                         <?php echo $item['post_title'] ?>
                                     </a>
                                     <p class="desc-content-box text-decs">

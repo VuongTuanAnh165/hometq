@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file_ext = strtolower(end($file_parts));
     $expensions = array("jpeg", "jpg", "png");
 
-    $post_type_img = $_FILES['post_type_img']['name'];
-    $target ="../../../pages_img/post_type/photo/" . basename($post_type_img);
+    $post_type_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
+    $target = "../../../pages_img/post_type/photo/" . basename($post_type_img);
     $data =
         [
             "post_type_title" => postInput('post_type_title'),
@@ -22,7 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "web_id" => postInput('web_id'),
             "post_type_img" => $post_type_img
         ];
-
+    $data_img =
+        [
+            "pages_img_gr_id" => 5,
+            "pages_img_name" => $post_type_img,
+            "pages_img_link" => base_img("post_type") . "photo/" . $post_type_img
+        ];
     if (postInput('post_type_title') == '') {
         echo "<script>alert('Mời bạn nhập đầy đủ tên nhóm bài viết');</script>";
     } else {
@@ -33,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
             } else {
                 $id_insert = $db->insert("post_type", $data);
-                if ($id_insert > 0 && move_uploaded_file($_FILES['post_type_img']['tmp_name'], $target)) {
+                $id_insert_img = $db->insert("pages_img", $data_img);
+                if ($id_insert > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_type_img']['tmp_name'], $target)) {
                     $_SESSION['success'] = " Thêm mới thành công ";
                     redirectAdmin($open);
                 } else {

@@ -60,7 +60,7 @@ $post_new = $db->fetchdata($sql_post_new);
                             </div>
                             <div class="content-box">
                                 <div class="content-art">
-                                    <a href="blog-detail.html" class="section-heading-jost-size28">
+                                    <a href="service_details.php?id=<?php echo $item['service_id']?>" class="section-heading-jost-size28">
                                         <?php echo $item['service_name']?>
                                     </a>
                                     <p class="desc-content-box text-decs">

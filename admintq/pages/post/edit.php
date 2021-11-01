@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file_parts = explode('.', $_FILES['post_image1']['name']);
     $file_ext = strtolower(end($file_parts));
     $expensions = array("jpeg", "jpg", "png");
-    $post_image1 = $_FILES['post_image1']['name'];
-    $target ="../../../pages_img/post/photo/" . basename($post_image1);
+    $post_image1 = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
+    $target = "../../../pages_img/post/photo/" . basename($post_image1);
     $data =
         [
             "post_title" => postInput('post_title'),
@@ -37,7 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "web_id" => postInput('web_id'),
             "post_image1" => $post_image1
         ];
-
+    $data_img =
+        [
+            "pages_img_gr_id" => 4,
+            "pages_img_name" => $post_image1,
+            "pages_img_link" => base_img("post") . "photo/" . $post_image1
+        ];
     if (postInput('post_title') == '') {
         echo "<script>alert('Mời bạn nhập đầy đủ tên bài viết');</script>";
     } else {
@@ -49,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 if ($post['post_title'] != $data['post_title']) {
                     $id_update = $db->update("post", $data, array("post_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -58,7 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } else {
                     $id_update = $db->update("post", $data, array("post_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -100,24 +107,7 @@ require_once(__DIR__ . '/../../layout/header.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="./link_img.php" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Link ảnh</label>
-                            <div style="margin-bottom: 1%;" class="col-sm-8">
-                                <div class="row">
-                                    <input type="file" class='form-control-file col-sm-5' id="exampleFormControlFile1" name='pages_img_name'>
-                                    <button type="submit" class="btn btn-success col-sm-2" name="submit">Lấy link URL</button>
-                                </div>
-                                <?php
-                                    if(isset($_SESSION['link_img']))
-                                    {
-                                        echo $_SESSION['link_img'];
-                                        unset($_SESSION['link_img']);
-                                    }
-                                ?>
-                            </div>
-                        </div>
-                    </form>
+
                     <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
@@ -160,7 +150,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                                 <?php if (isset($error['post_image1'])) :  ?>
                                     <p class="text-danger"></p> <?php echo $error['post_image1'] ?>
                                 <?php endif; ?>
-                                <img id="post1" width="100px" src="<?php echo base_img('post')?>photo/<?php echo $post['post_image1'] ?>" alt="<?php echo $post['post_image1'] ?>">
+                                <img id="post1" width="100px" src="<?php echo base_img('post') ?>photo/<?php echo $post['post_image1'] ?>" alt="<?php echo $post['post_image1'] ?>">
                             </div>
                         </div>
 

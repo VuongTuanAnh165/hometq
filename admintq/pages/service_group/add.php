@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file_ext = strtolower(end($file_parts));
     $expensions = array("jpeg", "jpg", "png");
 
-    $service_gr_img = $_FILES['service_gr_img']['name'];
+    $service_gr_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
     $target = "../../../pages_img/service_group/photo/" . basename($service_gr_img);
     $data =
         [
@@ -22,7 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "web_id" => postInput('web_id'),
             "service_gr_img" => $service_gr_img
         ];
-
+    $data_img =
+        [
+            "pages_img_gr_id" => 8,
+            "pages_img_name" => $service_gr_img,
+            "pages_img_link" => base_img("service_group") . "photo/" . $service_gr_img
+        ];
     if (postInput('service_gr_name') == '') {
         echo "<script>alert('Mời bạn nhập đầy đủ tên nhóm dịch vụ');</script>";
     } else {
@@ -33,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
             } else {
                 $id_insert = $db->insert("service_group", $data);
-                if ($id_insert > 0 && move_uploaded_file($_FILES['service_gr_img']['tmp_name'], $target)) {
+                $id_insert_img = $db->insert("pages_img", $data_img);
+                if ($id_insert > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['service_gr_img']['tmp_name'], $target)) {
                     $_SESSION['success'] = " Thêm mới thành công ";
                     redirectAdmin($open);
                 } else {
@@ -73,7 +79,7 @@ require_once(__DIR__ . '/../../layout/header.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form class="form-horizontal" action="" method="POST">
+                    <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Website</label>

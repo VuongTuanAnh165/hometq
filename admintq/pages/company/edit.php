@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file_ext = strtolower(end($file_parts));
     $expensions = array("jpeg", "jpg", "png");
 
-    $company_logo = $_FILES['company_logo']['name'];
+    $company_logo = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
     $target = "../../../pages_img/company/photo/" . basename($company_logo);
     $data =
         [
@@ -33,6 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "company_description" => postInput('company_description'),
             "company_content" => postInput('company_content')
         ];
+    $data_img =
+        [
+            "pages_img_gr_id" => 1,
+            "pages_img_name" => $company_logo,
+            "pages_img_link" => base_img("post") . "photo/" . $company_logo
+        ];
     if (postInput('company_name') == '') {
         echo "<script>alert('Mời bạn nhập đầy đủ tên công ty');</script>";
     } else {
@@ -44,7 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 if ($post['company_name'] != $data['company_name']) {
                     $id_update = $db->update("company", $data, array("company_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['company_logo']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['company_logo']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -53,7 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } else {
                     $id_update = $db->update("company", $data, array("company_id" => $id));
-                    if ($id_update > 0 && move_uploaded_file($_FILES['company_logo']['tmp_name'], $target)) {
+                    $id_insert_img = $db->insert("pages_img", $data_img);
+                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['company_logo']['tmp_name'], $target)) {
                         $_SESSION['success'] = " Cập nhật thành công ";
                         redirectAdmin($open);
                     } else {
@@ -108,7 +116,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                             <label for="exampleFormControlFile1">Logo</label>
                             <div class="col-sm-8">
                                 <input type="file" class='form-control-file' id="exampleFormControlFile1" name='company_logo' onchange="preview_thumbail_logo(this);">
-                                <img width="100px" id="logo" src="<?php echo base_img('company')?>photo/<?php echo $company_check['company_logo'] ?>" alt="your image">
+                                <img width="100px" id="logo" src="<?php echo base_img('company') ?>photo/<?php echo $company_check['company_logo'] ?>" alt="your image">
                             </div>
                         </div>
 
