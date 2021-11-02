@@ -1,6 +1,5 @@
 <?php
 require_once(__DIR__ . '/../autoload/autoload.php');
-
 //Nhóm dịch vụ
 $sql_service_group = "SELECT * FROM service_group WHERE service_gr_active=1";
 $service_group = $db->fetchdata($sql_service_group);
@@ -117,7 +116,7 @@ $post_type = $db->fetchdata($sql_post_type);;
                                             <a href="<?php echo base_url() ?>pages/service_group/index.php" title="">Dịch vụ</a>
                                             <ul class="sub-menu">
                                                 <?php foreach ($service_group as $item) : ?>
-                                                    <li><a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id'] ?>" title=""><?php echo $item['service_gr_name'] ?></a></li>
+                                                    <li><a href="<?php echo base_url() ?>pages/service/index.php?name=<?php $_SESSION[toSlug($item['service_gr_name'])]= $item['service_gr_id']; echo toSlug($item['service_gr_name'])?>" title=""><?php echo $item['service_gr_name'] ?></a></li>
                                                 <?php endforeach ?>
                                             </ul>
                                             <!-- /.sub-menu -->
@@ -126,7 +125,7 @@ $post_type = $db->fetchdata($sql_post_type);;
                                             <a href="<?php echo base_url() ?>pages/project/index.php" title="">Dự án</a>
                                             <ul class="sub-menu">
                                                 <?php foreach ($project as $item) : ?>
-                                                    <li><a href="<?php echo base_url() ?>pages/project/project_details.php?id=<?php echo $item['project_id'] ?>" title=""><?php echo $item['project_name'] ?></a></li>
+                                                    <li><a href="<?php echo base_url() ?>pages/project/project_details.php?name=<?php $_SESSION[toSlug($item['project_name'])]= $item['project_id']; echo toSlug($item['project_name'])?>" title=""><?php echo $item['project_name'] ?></a></li>
                                                 <?php endforeach ?>
                                             </ul>
                                             <!-- /.sub-menu -->
@@ -138,7 +137,7 @@ $post_type = $db->fetchdata($sql_post_type);;
                                             <a href="<?php echo base_url() ?>/pages/post_type/index.php" title="">Tin tức xanh</a>
                                             <ul class="sub-menu">
                                                 <?php foreach ($post_type as $item) : ?>
-                                                    <li><a href="<?php echo base_url() ?>pages/post/index.php?id=<?php echo $item['post_type_id'] ?>" title=""><?php echo $item['post_type_title'] ?></a></li>
+                                                    <li><a href="<?php echo base_url() ?>pages/post/index.php?name=<?php $_SESSION[toSlug($item['post_type_title'])]= $item['post_type_id']; echo toSlug($item['post_type_title'])?>" title=""><?php echo $item['post_type_title'] ?></a></li>
                                                 <?php endforeach ?>
                                             </ul>
                                             <!-- /.sub-menu -->

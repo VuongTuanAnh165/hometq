@@ -2,18 +2,20 @@
 
 <?php
 require_once(__DIR__ . '/../../autoload/autoload.php');
-$id = intval(getInput('id'));
-//tin tức theo post_type_id
-$sql_post = "SELECT * FROM post WHERE post_type_id=$id";
-$post = $db->fetchdata($sql_post);
+if (isset($_SESSION[getInput('name')])) {
+    $id = intval($_SESSION[getInput('name')]);
+    unset($_SESSION[getInput('name')]);
+    //tin tức theo post_type_id
+    $sql_post = "SELECT * FROM post WHERE post_type_id=$id";
+    $post = $db->fetchdata($sql_post);
+    //nhóm tin tức theo post_type_id
+    $sql_post_type_id = "SELECT * FROM post_type WHERE post_type_id=$id";
+    $post_type_id = $db->fetchcheck($sql_post_type_id);
+}
 
 //nhóm tin tức
 $sql_post_type = "SELECT * FROM post_type WHERE post_type_active=1";
 $post_type = $db->fetchdata($sql_post_type);
-
-//nhóm tin tức theo post_type_id
-$sql_post_type_id = "SELECT * FROM post_type WHERE post_type_id=$id";
-$post_type_id = $db->fetchcheck($sql_post_type_id);
 
 //bài viết mới
 $sql_post_new = "SELECT * FROM post WHERE post_active=1 ORDER BY post_datetime_update LIMIT 10";
@@ -27,6 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql_post = "SELECT * FROM post WHERE post_title LIKE '%$post_title%' AND post_active=1";
         $post = $db->fetchdata($sql_post);
     } else {
+        if (isset($_SESSION[getInput('name')])) {
+            $id = intval($_SESSION[getInput('name')]);
+            unset($_SESSION[getInput('name')]);
+        }
         $sql_post = "SELECT * FROM post WHERE post_type_id=$id";
         $post = $db->fetchdata($sql_post);
     }
@@ -42,15 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="banner-title">
                     <div class="page-title-heading">
                         Tin tức<br>
-                        <?php 
-                            if(isset($post_title)) 
-                            {
-                                echo " Liên quan đến '".$post_title."'";
-                            }
-                            else
-                            {
-                                echo $post_type_id['post_type_title'];
-                            }    
+                        <?php
+                        if (isset($post_title)) {
+                            echo " Liên quan đến '" . $post_title . "'";
+                        } else {
+                            echo $post_type_id['post_type_title'];
+                        }
                         ?>
                     </div>
                     <div class="page-title-content link-style6">
@@ -86,14 +89,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="content-box">
                                 <div class="content-art">
-                                    <a href="post_details.php?id=<?php echo $item['post_id'] ?>" class="section-heading-jost-size28">
+                                    <a href="post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                    echo toSlug($item['post_title']) ?>" class="section-heading-jost-size28">
                                         <?php echo $item['post_title'] ?>
                                     </a>
                                     <p class="desc-content-box text-decs">
                                         <?php echo $item['post_description'] ?>
                                     </p>
                                     <div class="link-style2">
-                                        <a href="post_details.php?id=<?php echo $item['post_id'] ?>" class="read-more">
+                                        <a href="post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                        echo toSlug($item['post_title']) ?>" class="read-more">
                                             Xem thêm<i class="fas fa-long-arrow-alt-right"></i>
                                         </a>
                                     </div>
@@ -115,7 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </h3>
                         <ul class="list-category">
                             <?php foreach ($post_type as $item) : ?>
-                                <li><a href="<?php echo base_url() ?>pages/post/index.php?id=<?php echo $item['post_type_id'] ?>"><?php echo $item['post_type_title'] ?></a></li>
+                                <li><a href="<?php echo base_url() ?>pages/post/index.php?name=<?php $_SESSION[toSlug($item['post_type_title'])] = $item['post_type_id'];
+                                                                                                echo toSlug($item['post_type_title']) ?>"><?php echo $item['post_type_title'] ?></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>
@@ -128,7 +134,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <img src="<?php echo base_img('post') ?>photo/<?php echo $item['post_image1'] ?>" alt="Image">
                                     </div>
                                     <div class="text">
-                                        <h3><a href="post_details.php?id=<?php echo $item['post_id'] ?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
+                                        <h3><a href="post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                            echo toSlug($item['post_title']) ?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
                                         <a href="#" class="date"><?php echo $item['post_datetime_update'] ?></a>
                                     </div>
                                 </li>

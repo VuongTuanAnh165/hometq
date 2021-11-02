@@ -2,7 +2,11 @@
 
 <?php
 require_once(__DIR__ . '/../../autoload/autoload.php');
-$id = intval(getInput('id'));
+if(isset($_SESSION[getInput('name')]))
+{
+    $id = intval($_SESSION[getInput('name')]);
+    unset($_SESSION[getInput('name')]);
+}
 //dịch vụ theo service_gr_id
 $sql_service = "SELECT * FROM service WHERE service_gr_id=$id AND service_active=1";
 $service = $db->fetchdata($sql_service);
@@ -24,7 +28,7 @@ $post_new = $db->fetchdata($sql_post_new);
 <div class="page-title">
     <div class="container-fluid">
         <div class="row">
-            <div style="background-image: url(./photo/<?php echo $service[0]['service_image']?>);" class="inner-title">
+            <div style="background-image: url(<?php echo base_img('service')?>photo/<?php echo $service[0]['service_image']?>);" class="inner-title">
                 <div class="overlay-image"></div>
                 <div class="banner-title">
                     <div class="page-title-heading">
@@ -60,14 +64,14 @@ $post_new = $db->fetchdata($sql_post_new);
                             </div>
                             <div class="content-box">
                                 <div class="content-art">
-                                    <a href="service_details.php?id=<?php echo $item['service_id']?>" class="section-heading-jost-size28">
+                                    <a href="service_details.php?name=<?php $_SESSION[toSlug($item['service_name'])]= $item['service_id']; echo toSlug($item['service_name'])?>" class="section-heading-jost-size28">
                                         <?php echo $item['service_name']?>
                                     </a>
                                     <p class="desc-content-box text-decs">
                                         <?php echo $item['service_description'] ?>
                                     </p>
                                     <div class="link-style2">
-                                        <a href="service_details.php?id=<?php echo $item['service_id']?>" class="read-more">
+                                        <a href="service_details.php?name=<?php $_SESSION[toSlug($item['service_name'])]= $item['service_id']; echo toSlug($item['service_name'])?>" class="read-more">
                                             Xem thêm<i class="fas fa-long-arrow-alt-right"></i>
                                         </a>
                                     </div>

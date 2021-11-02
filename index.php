@@ -204,7 +204,7 @@ $policies = $db->fetchdata($sql_policies);
                             class="path5"></span></span>
                     <div class="content-features">
                         <a
-                            href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>">
+                            href="<?php echo base_url() ?>pages/service/index.php?name=<?php $_SESSION[toSlug($item['service_gr_name'])]= $item['service_gr_id']; echo toSlug($item['service_gr_name'])?>">
                             <h3 class="section-heading-jost-size22">
                                 <?php echo $item['service_gr_name'] ?></h3>
                         </a>
@@ -212,7 +212,7 @@ $policies = $db->fetchdata($sql_policies);
                             <?php echo $item['service_gr_description'] ?>
                         </p>
                         <div class="link2 link-style2">
-                            <a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id']?>"
+                            <a href="<?php echo base_url() ?>pages/service/index.php?name=<?php $_SESSION[toSlug($item['service_gr_name'])]= $item['service_gr_id']; echo toSlug($item['service_gr_name'])?>"
                                 class="read-more">
                                 Xem thêm
                             </a>
@@ -253,7 +253,7 @@ $policies = $db->fetchdata($sql_policies);
                             <div class="profolio-info">
                                 <div class="info">
                                     <a
-                                        href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>">
+                                        href="<?php echo base_url()?>pages/project/project_details.php?name=<?php $_SESSION[toSlug($item['project_name'])]= $item['project_id']; echo toSlug($item['project_name'])?>">
                                         <h3 class="section-heading-jost-size20">
                                             <?php echo $item['project_status'] ?></h3>
                                     </a>
@@ -261,7 +261,7 @@ $policies = $db->fetchdata($sql_policies);
                                 </div>
                                 <div class="button-next">
                                     <a class="profolio-btn"
-                                        href="<?php echo base_url()?>pages/project/project_details.php?id=<?php echo $item['project_id']?>"></a>
+                                        href="<?php echo base_url()?>pages/project/project_details.php?name=<?php $_SESSION[toSlug($item['project_name'])]= $item['project_id']; echo toSlug($item['project_name'])?>"></a>
                                 </div>
                             </div>
                         </div>
@@ -314,7 +314,7 @@ $policies = $db->fetchdata($sql_policies);
             <div class="col-md-12">
                 <div class="section-title-box">
                     <h4 class="section-subtitle wow fadeInUp">Tiến trình công việc</h4>
-                    <h2 class="section-title wow fadeInUp">Từng bước công việc <br>được lên kế hoạch tỉ mỉ chú đáo</h2>
+                    <h2 class="section-title wow fadeInUp">Từng bước công việc <br>được lên kế hoạch tỉ mỉ chu đáo</h2>
                 </div>
                 <div class="themesflat-spacer clearfix" data-desktop="65" data-mobile="60" data-smobile="60">
                 </div>
@@ -512,16 +512,19 @@ $policies = $db->fetchdata($sql_policies);
                                 class="blog-item hover-up-style2">
                                 <div class="item-overlay"></div>
                                 <div class="item-box link">
-                                    <div class="content-info"><a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>" class="folder">
+                                    <div class="content-info"><a href="<?php echo base_url() ?>pages/post/post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                    echo toSlug($item['post_title']) ?>" class="folder">
                                             <?php echo $item['post_type_title']; ?>
                                         </a></div>
                                     <div class="link-style6">
                                         <div class="content-info margin-top"><a
-                                                href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>"
+                                                href="<?php echo base_url() ?>pages/post/post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                    echo toSlug($item['post_title']) ?>"
                                                 class="user">
                                                 By Admin
                                             </a></div>
-                                        <a href="<?php echo base_url() ?>pages/post/post_details.php?id=<?php echo $item['post_id']?>"
+                                        <a href="<?php echo base_url() ?>pages/post/post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                    echo toSlug($item['post_title']) ?>"
                                             class="section-heading-jost-size20">
                                             <?php echo $item['post_title']; ?>
                                         </a>

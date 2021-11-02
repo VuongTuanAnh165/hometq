@@ -43,16 +43,16 @@
                             <img src="<?php base_img('project')?>photo/<?php echo $item['project_img'] ?>" alt="images">
                             <div class="profolio-show active">
                                 <div class="profolio-info">
-                                    <div class="info">
-                                        <a href="./project_details.php?id=<?php echo $item['project_id'] ?>">
+                                    <div style="width: 75%; overflow:hidden" class="info">
+                                        <a href="./project_details.php?name=<?php $_SESSION[toSlug($item['project_name'])]= $item['project_id']; echo toSlug($item['project_name'])?>">
                                             <h3 class="section-heading-jost-size20">
                                                 <?php echo $item['project_name'] ?>
                                             </h3>
                                         </a>
                                         <p class="desc-box"><?php echo $item['project_description'] ?></p>
                                     </div>
-                                    <div class="button-next">
-                                        <a class="profolio-btn" href="./project_details.php?id=<?php echo $item['project_id'] ?>"></a>
+                                    <div style="width: 15%;"  class="button-next">
+                                        <a class="profolio-btn" href="./project_details.php?name=<?php $_SESSION[toSlug($item['project_name'])]= $item['project_id']; echo toSlug($item['project_name'])?>"></a>
                                     </div>
                                 </div>
                             </div>
