@@ -95,7 +95,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Tên nhóm dịch vụ</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên sản phẩm" name='service_gr_name'>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên nhóm dịch vụ" name='service_gr_name'>
                                 <?php if (isset($error['service_gr_name'])) :  ?>
                                     <p class="text-danger"></p> <?php echo $error['service_gr_name'] ?>
                                 <?php endif; ?>

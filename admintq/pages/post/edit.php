@@ -135,7 +135,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Tên tiêu đề</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên sản phẩm" name='post_title' value="<?php echo $post['post_title'] ?>">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên tiêu đề" name='post_title' value="<?php echo $post['post_title'] ?>">
                                 <?php if (isset($error['post_title'])) :  ?>
                                     <p class="text-danger"></p> <?php echo $error['post_title'] ?>
                                 <?php endif; ?>
