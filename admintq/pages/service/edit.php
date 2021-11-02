@@ -106,7 +106,7 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-lable">Tên dịch vụ</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên sản phẩm" name='service_name' value="<?php echo $service['service_name'] ?>">
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên dịch vụ" name='service_name' value="<?php echo $service['service_name'] ?>">
 
                             </div>
                         </div>
