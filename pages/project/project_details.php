@@ -2,7 +2,11 @@
 
 <?php
 require_once(__DIR__ . '/../../autoload/autoload.php');
-$id = intval(getInput('id'));
+if(isset($_SESSION[getInput('name')]))
+{
+    $id = intval($_SESSION[getInput('name')]);
+    unset($_SESSION[getInput('name')]);
+}
 //dự án theo project
 $sql_project = "SELECT * FROM project WHERE  project_id=$id";
 $project = $db->fetchcheck($sql_project);

@@ -2,7 +2,11 @@
 
 <?php
 require_once(__DIR__ . '/../../autoload/autoload.php');
-$id = intval(getInput('id'));
+if(isset($_SESSION[getInput('name')]))
+{
+    $id = intval($_SESSION[getInput('name')]);
+    unset($_SESSION[getInput('name')]);
+}
 //bài viết theo post_id
 $sql_post = "SELECT * FROM post WHERE  post_id=$id";
 $post = $db->fetchcheck($sql_post);
@@ -98,7 +102,7 @@ $post_new = $db->fetchdata($sql_post_new);
                         </h3>
                         <ul class="list-category">
                             <?php foreach ($post_type as $item) : ?>
-                                <li><a href="<?php echo base_url() ?>pages/post/index.php?id=<?php echo $item['post_type_id'] ?>"><?php echo $item['post_type_title']?></a></li>
+                                <li><a href="<?php echo base_url() ?>pages/post/index.php?name=<?php $_SESSION[toSlug($item['post_type_title'])]= $item['post_type_id']; echo toSlug($item['post_type_title'])?>"><?php echo $item['post_type_title']?></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>
@@ -111,7 +115,7 @@ $post_new = $db->fetchdata($sql_post_new);
                                         <img src="<?php echo base_img('post')?>photo/<?php echo $item['post_image1'] ?>" alt="Image">
                                     </div>
                                     <div class="text">
-                                        <h3><a href="post_details.php?id=<?php echo $item['post_id'] ?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
+                                        <h3><a href="post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])]= $item['post_id']; echo toSlug($item['post_title'])?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
                                         <a href="#" class="date"><?php echo $item['post_datetime_update'] ?></a>
                                     </div>
                                 </li>
