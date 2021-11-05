@@ -115,7 +115,8 @@ $post_new = $db->fetchdata($sql_post_new);
                                         <img src="<?php echo base_img('post')?>photo/<?php echo $item['post_image1'] ?>" alt="Image">
                                     </div>
                                     <div class="text">
-                                        <h3><a href="<?php echo base_url()?>pages/post/post_details.php?id=<?php echo $item['post_id'] ?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
+                                        <h3><a href="<?php echo base_url()?>pages/post/post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                    echo toSlug($item['post_title']) ?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
                                         <a href="#" class="date"><?php echo $item['post_datetime_update'] ?></a>
                                     </div>
                                 </li>
