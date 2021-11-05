@@ -32,9 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_SESSION[getInput('name')])) {
             $id = intval($_SESSION[getInput('name')]);
             unset($_SESSION[getInput('name')]);
+            $sql_post = "SELECT * FROM post WHERE post_type_id=$id";
+            $post = $db->fetchdata($sql_post);
+            //nhóm tin tức theo post_type_id
+            $sql_post_type_id = "SELECT * FROM post_type WHERE post_type_id=$id";
+            $post_type_id = $db->fetchcheck($sql_post_type_id);
         }
-        $sql_post = "SELECT * FROM post WHERE post_type_id=$id";
-        $post = $db->fetchdata($sql_post);
     }
 }
 ?>
@@ -43,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="page-title">
     <div class="container-fluid">
         <div class="row">
-            <div style="background-image: url(<?php echo base_img('post') ?>photo/<?php echo $post['post_image1']?>);" class="inner-title">
+            <div style="background-image: url(<?php echo base_img('post') ?>photo/<?php echo $post[0]['post_image1'] ?>);" class="inner-title">
                 <div class="overlay-image"></div>
                 <div class="banner-title">
                     <div class="page-title-heading">
