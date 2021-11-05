@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="page-title">
     <div class="container-fluid">
         <div class="row">
-            <div style="background-image: url(./photo/<?php echo $post[0]['post_image1'] ?>);" class="inner-title">
+            <div style="background-image: url(<?php echo base_img('post') ?>photo/<?php echo $post['post_image1']?>);" class="inner-title">
                 <div class="overlay-image"></div>
                 <div class="banner-title">
                     <div class="page-title-heading">

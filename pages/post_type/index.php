@@ -12,7 +12,7 @@
 <div class="page-title">
     <div class="container-fluid">
         <div class="row">
-            <div style="background-image: url(./photo/box-flowers-green-garden-background.jpg);" class="inner-title">
+            <div style="background-image: url(<?php echo base_img('post_type')?>photo/<?php echo $post_type[0]['post_type_img'] ?>);" class="inner-title">
                 <div class="overlay-image"></div>
                 <div class="banner-title">
                     <div class="page-title-heading">

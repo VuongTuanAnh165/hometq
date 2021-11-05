@@ -2,8 +2,7 @@
 
 <?php
 require_once(__DIR__ . '/../../autoload/autoload.php');
-if(isset($_SESSION[getInput('name')]))
-{
+if (isset($_SESSION[getInput('name')])) {
     $id = intval($_SESSION[getInput('name')]);
     unset($_SESSION[getInput('name')]);
 }
@@ -25,11 +24,11 @@ $post_new = $db->fetchdata($sql_post_new);
 <div class="page-title">
     <div class="container-fluid">
         <div class="row">
-            <div style="background-image: url(./photo/<?php echo $post['post_image1']?>);" class="inner-title">
+            <div style="background-image: url(<?php echo base_img('post') ?>photo/<?php echo $post['post_image1']?>);" class="inner-title">
                 <div class="overlay-image"></div>
                 <div class="banner-title">
                     <div class="page-title-heading">
-                        Chi tiết tin tức<br><?php echo $post['post_title']?>
+                        Chi tiết tin tức<br><?php echo $post['post_title'] ?>
                     </div>
                     <div class="page-title-content link-style6">
                         <span><a class="home" href="<?php echo base_url() ?>index.php">Trang chủ</a></span><span><a class="page-title-content-inner" href="<?php echo base_url() ?>pages/post_type/index.php">Nhóm tin tức</a></span><span><a class="page-title-content-inner" href="<?php echo base_url() ?>pages/post/index.php?id=<?php echo $post['post_type_id'] ?>">Tin tức</a></span><span class="page-title-content-inner">Chi tiết tin tức</span>
@@ -56,7 +55,7 @@ $post_new = $db->fetchdata($sql_post_new);
                     <div class="content-blog-detail">
                         <div class="image-box">
                             <div class="image">
-                                <img src="<?php echo base_img('post')?>photo/<?php echo $post['post_image1'] ?>" alt="image">
+                                <img src="<?php echo base_img('post') ?>photo/<?php echo $post['post_image1'] ?>" alt="image">
                             </div>
                         </div>
                         <div class="content mg-top-15">
@@ -102,7 +101,8 @@ $post_new = $db->fetchdata($sql_post_new);
                         </h3>
                         <ul class="list-category">
                             <?php foreach ($post_type as $item) : ?>
-                                <li><a href="<?php echo base_url() ?>pages/post/index.php?name=<?php $_SESSION[toSlug($item['post_type_title'])]= $item['post_type_id']; echo toSlug($item['post_type_title'])?>"><?php echo $item['post_type_title']?></a></li>
+                                <li><a href="<?php echo base_url() ?>pages/post/index.php?name=<?php $_SESSION[toSlug($item['post_type_title'])] = $item['post_type_id'];
+                                                                                                echo toSlug($item['post_type_title']) ?>"><?php echo $item['post_type_title'] ?></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>
@@ -112,10 +112,11 @@ $post_new = $db->fetchdata($sql_post_new);
                             <?php foreach ($post_new as $item) : ?>
                                 <li class="clearfix">
                                     <div class="thumb data-effect-item has-effect-icon">
-                                        <img src="<?php echo base_img('post')?>photo/<?php echo $item['post_image1'] ?>" alt="Image">
+                                        <img src="<?php echo base_img('post') ?>photo/<?php echo $item['post_image1'] ?>" alt="Image">
                                     </div>
                                     <div class="text">
-                                        <h3><a href="post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])]= $item['post_id']; echo toSlug($item['post_title'])?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
+                                        <h3><a href="post_details.php?name=<?php $_SESSION[toSlug($item['post_title'])] = $item['post_id'];
+                                                                            echo toSlug($item['post_title']) ?>" class="title-thumb"><?php echo $item['post_title'] ?></a></h3>
                                         <a href="#" class="date"><?php echo $item['post_datetime_update'] ?></a>
                                     </div>
                                 </li>
