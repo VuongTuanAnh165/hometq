@@ -8,7 +8,7 @@ if(isset($_SESSION[getInput('name')]))
     unset($_SESSION[getInput('name')]);
 }
 //dịch vụ theo post_id
-$sql_service = "SELECT * FROM service WHERE  service_id=$id";
+$sql_service = "SELECT * FROM service,service_group WHERE service.service_gr_id=service_group.service_gr_id AND  service_id=$id";
 $service = $db->fetchcheck($sql_service);
 
 //nhóm dịch vụ
@@ -32,7 +32,8 @@ $post_new = $db->fetchdata($sql_post_new);
                         Chi tiết dịch vụ<br><?php echo $service['service_name'] ?>
                     </div>
                     <div class="page-title-content link-style6">
-                        <span><a class="home" href="<?php echo base_url() ?>index.php">Trang chủ</a></span><span><a class="page-title-content-inner" href="<?php echo base_url() ?>pages/service_group/index.php">Nhóm dịch vụ</a></span><span><a class="page-title-content-inner" href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $service['service_gr_id'] ?>">dịch vụ</a></span><span class="page-title-content-inner">Chi tiết dịch vụ</span>
+                        <span><a class="home" href="<?php echo base_url() ?>index.php">Trang chủ</a></span><span><a class="page-title-content-inner" href="<?php echo base_url() ?>pages/service_group/index.php">Nhóm dịch vụ</a></span><span><a class="page-title-content-inner" href="<?php echo base_url() ?>pages/service/index.php?name=<?php $_SESSION[toSlug($service['service_gr_name'])] = $service['service_gr_id'];
+                                                                                echo toSlug($service['service_gr_name']) ?>">dịch vụ</a></span><span class="page-title-content-inner">Chi tiết dịch vụ</span>
                     </div>
                 </div>
             </div>
@@ -102,7 +103,8 @@ $post_new = $db->fetchdata($sql_post_new);
                         </h3>
                         <ul class="list-category">
                             <?php foreach ($service_group as $item) : ?>
-                                <li><a href="<?php echo base_url() ?>pages/service/index.php?id=<?php echo $item['service_gr_id'] ?>"><?php echo $item['service_gr_name'] ?></a></li>
+                                <li><a href="<?php echo base_url() ?>pages/service/index.php?name=<?php $_SESSION[toSlug($item['service_gr_name'])] = $item['service_gr_id'];
+                                                                                echo toSlug($item['service_gr_name']) ?>"><?php echo $item['service_gr_name'] ?></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>
