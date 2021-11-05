@@ -25,7 +25,7 @@ $post_new = $db->fetchdata($sql_post_new);
 <div class="page-title">
     <div class="container-fluid">
         <div class="row">
-            <div style="background-image: url(./photo/<?php echo $service['service_image'] ?>);" class="inner-title">
+            <div style="background-image: url(<?php echo base_img('service')?>photo/<?php echo $service['service_image']?>);" class="inner-title">
                 <div class="overlay-image"></div>
                 <div class="banner-title">
                     <div class="page-title-heading">
