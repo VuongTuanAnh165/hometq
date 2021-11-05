@@ -5,7 +5,6 @@ require_once(__DIR__ . '/../../autoload/autoload.php');
 if(isset($_SESSION[getInput('name')]))
 {
     $id = intval($_SESSION[getInput('name')]);
-    unset($_SESSION[getInput('name')]);
 }
 //bài viết theo post_id
 $sql_post = "SELECT * FROM post WHERE  post_id=$id";

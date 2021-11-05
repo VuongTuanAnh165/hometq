@@ -4,7 +4,6 @@
 require_once(__DIR__ . '/../../autoload/autoload.php');
 if (isset($_SESSION[getInput('name')])) {
     $id = intval($_SESSION[getInput('name')]);
-    unset($_SESSION[getInput('name')]);
 }
 //dịch vụ theo service_gr_id
 $sql_service = "SELECT * FROM service WHERE service_gr_id=$id AND service_active=1";
