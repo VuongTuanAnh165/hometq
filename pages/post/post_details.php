@@ -84,17 +84,6 @@ $post_new = $db->fetchdata($sql_post_new);
             <div class="col-md-4">
                 <div class="themesflat-spacer clearfix" data-desktop="0" data-mobile="60" data-smobile="60"></div>
                 <div class="side-bar">
-                    <div class="widgets-search">
-                        <h3 class="widgets-side-bar-title">
-                            Tìm kiếm
-                        </h3>
-                        <div class="widgets-input">
-                            <form method="get" role="search" class="search-form">
-                                <input type="search" class="search-field" placeholder="Tìm kiếm" value="" name="s" title="Search for">
-                                <button class="search-submit" type="submit" title="Search"></button>
-                            </form>
-                        </div>
-                    </div>
                     <div class="widgets-category">
                         <h3 class="widgets-side-bar-title">
                             Nhóm tin tức
