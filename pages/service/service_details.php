@@ -5,7 +5,6 @@ require_once(__DIR__ . '/../../autoload/autoload.php');
 if(isset($_SESSION[getInput('name')]))
 {
     $id = intval($_SESSION[getInput('name')]);
-    unset($_SESSION[getInput('name')]);
 }
 //dịch vụ theo post_id
 $sql_service = "SELECT * FROM service,service_group WHERE service.service_gr_id=service_group.service_gr_id AND  service_id=$id";

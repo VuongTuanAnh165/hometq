@@ -4,7 +4,6 @@
 require_once(__DIR__ . '/../../autoload/autoload.php');
 if (isset($_SESSION[getInput('name')])) {
     $id = intval($_SESSION[getInput('name')]);
-    unset($_SESSION[getInput('name')]);
     //tin tức theo post_type_id
     $sql_post = "SELECT * FROM post WHERE post_type_id=$id";
     $post = $db->fetchdata($sql_post);
