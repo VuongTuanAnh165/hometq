@@ -18,60 +18,95 @@ $post_type = $db->fetchdata($sql2);
 $product = $db->fetchdata($sql3);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $file_name = $_FILES['post_image1']['name'];
-    $file_size = $_FILES['post_image1']['size'];
-    $file_tmp = $_FILES['post_image1']['tmp_name'];
-    $file_type = $_FILES['post_image1']['type'];
-    $file_parts = explode('.', $_FILES['post_image1']['name']);
-    $file_ext = strtolower(end($file_parts));
-    $expensions = array("jpeg", "jpg", "png");
-    $post_image1 = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
-    $target = "../../../pages_img/post/photo/" . basename($post_image1);
-    $data =
-        [
-            "post_title" => postInput('post_title'),
-            "post_description" => postInput('post_description'),
-            "ptd_text" => postInput('ptd_text'),
-            "product_id" => postInput('product_id'),
-            "post_type_id" => postInput('post_type_id'),
-            "web_id" => postInput('web_id'),
-            "post_image1" => $post_image1
-        ];
-    $data_img =
-        [
-            "pages_img_gr_id" => 4,
-            "pages_img_name" => $post_image1,
-            "pages_img_link" => base_img("post") . "photo/" . $post_image1
-        ];
-    if (postInput('post_title') == '') {
-        echo "<script>alert('Mời bạn nhập đầy đủ tên bài viết');</script>";
-    } else {
-        if (in_array($file_ext, $expensions) === false) {
-            echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
+    if ($_FILES['post_image1']['name'] != '') {
+        $file_name = $_FILES['post_image1']['name'];
+        $file_size = $_FILES['post_image1']['size'];
+        $file_tmp = $_FILES['post_image1']['tmp_name'];
+        $file_type = $_FILES['post_image1']['type'];
+        $file_parts = explode('.', $_FILES['post_image1']['name']);
+        $file_ext = strtolower(end($file_parts));
+        $expensions = array("jpeg", "jpg", "png");
+        $post_image1 = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
+        $target = "../../../pages_img/post/photo/" . basename($post_image1);
+        $data =
+            [
+                "post_title" => postInput('post_title'),
+                "post_description" => postInput('post_description'),
+                "ptd_text" => postInput('ptd_text'),
+                "product_id" => postInput('product_id'),
+                "post_type_id" => postInput('post_type_id'),
+                "web_id" => postInput('web_id'),
+                "post_image1" => $post_image1
+            ];
+        $data_img =
+            [
+                "pages_img_gr_id" => 4,
+                "pages_img_name" => $post_image1,
+                "pages_img_link" => base_img("post") . "photo/" . $post_image1
+            ];
+        if (postInput('post_title') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên bài viết');</script>";
         } else {
-            if ($file_size > 2097152) {
-                echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
+            if (in_array($file_ext, $expensions) === false) {
+                echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
             } else {
-                if ($post['post_title'] != $data['post_title']) {
-                    $id_update = $db->update("post", $data, array("post_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
-                    } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
-                    }
+                if ($file_size > 2097152) {
+                    echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
                 } else {
-                    $id_update = $db->update("post", $data, array("post_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
+                    if ($post['post_title'] != $data['post_title']) {
+                        $id_update = $db->update("post", $data, array("post_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
+                        $id_update = $db->update("post", $data, array("post_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_image1']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     }
+                }
+            }
+        }
+    } else {
+        $data =
+            [
+                "post_title" => postInput('post_title'),
+                "post_description" => postInput('post_description'),
+                "ptd_text" => postInput('ptd_text'),
+                "product_id" => postInput('product_id'),
+                "post_type_id" => postInput('post_type_id'),
+                "web_id" => postInput('web_id')
+            ];
+        if (postInput('post_title') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên bài viết');</script>";
+        } else {
+            if ($post['post_title'] != $data['post_title']) {
+                $id_update = $db->update("post", $data, array("post_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
+                }
+            } else {
+                $id_update = $db->update("post", $data, array("post_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
                 }
             }
         }
@@ -146,11 +181,12 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Hình ảnh</label>
                             <div style="margin-bottom: 1%;" class="col-sm-8">
-                                <input type="file" class='form-control-file' id="exampleFormControlFile1" name='post_image1' onchange="preview_thumbailpost1(this);">
-                                <?php if (isset($error['post_image1'])) :  ?>
-                                    <p class="text-danger"></p> <?php echo $error['post_image1'] ?>
-                                <?php endif; ?>
-                                <img id="post1" width="100px" src="<?php echo base_img('post') ?>photo/<?php echo $post['post_image1'] ?>" alt="<?php echo $post['post_image1'] ?>">
+                                <label className='cursor-pointer select-wrapper'>
+                                    <div className='logo-wrapper'>
+                                        <img width="100px" id="post1" alt='your image' src="<?php echo base_img('post') ?>photo/<?php echo $post['post_image1'] ?>">
+                                    </div>
+                                    <input id="exampleFormControlFile1" type="file" style="display: none;" onchange="preview_thumbailpost1(this);" name='post_image1' />
+                                </label>
                             </div>
                         </div>
 

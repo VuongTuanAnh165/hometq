@@ -14,58 +14,90 @@ $sql1 = "SELECT * FROM website_config";
 $website_config = $db->fetchdata($sql1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $file_name = $_FILES['post_type_img']['name'];
-    $file_size = $_FILES['post_type_img']['size'];
-    $file_tmp = $_FILES['post_type_img']['tmp_name'];
-    $file_type = $_FILES['post_type_img']['type'];
-    $file_parts = explode('.', $_FILES['post_type_img']['name']);
-    $file_ext = strtolower(end($file_parts));
-    $expensions = array("jpeg", "jpg", "png");
+    if ($_FILES['post_type_img']['name'] != '') {
+        $file_name = $_FILES['post_type_img']['name'];
+        $file_size = $_FILES['post_type_img']['size'];
+        $file_tmp = $_FILES['post_type_img']['tmp_name'];
+        $file_type = $_FILES['post_type_img']['type'];
+        $file_parts = explode('.', $_FILES['post_type_img']['name']);
+        $file_ext = strtolower(end($file_parts));
+        $expensions = array("jpeg", "jpg", "png");
 
-    $post_type_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
-    $target = "../../../pages_img/post_type/photo/" . basename($post_type_img);
-    $data =
-        [
-            "post_type_title" => postInput('post_type_title'),
-            "post_type_description" => postInput('post_type_description'),
-            "web_id" => postInput('web_id'),
-            "post_type_img" => $post_type_img
-        ];
-    $data_img =
-        [
-            "pages_img_gr_id" => 5,
-            "pages_img_name" => $post_type_img,
-            "pages_img_link" => base_img("post_type") . "photo/" . $post_type_img
-        ];
-    if (postInput('post_type_title') == '') {
-        echo "<script>alert('Mời bạn nhập đầy đủ tên nhóm bài viết');</script>";
-    } else {
-        if (in_array($file_ext, $expensions) === false) {
-            echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
+        $post_type_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
+        $target = "../../../pages_img/post_type/photo/" . basename($post_type_img);
+        $data =
+            [
+                "post_type_title" => postInput('post_type_title'),
+                "post_type_description" => postInput('post_type_description'),
+                "web_id" => postInput('web_id'),
+                "post_type_img" => $post_type_img
+            ];
+        $data_img =
+            [
+                "pages_img_gr_id" => 5,
+                "pages_img_name" => $post_type_img,
+                "pages_img_link" => base_img("post_type") . "photo/" . $post_type_img
+            ];
+        if (postInput('post_type_title') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên nhóm bài viết');</script>";
         } else {
-            if ($file_size > 2097152) {
-                echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
+            if (in_array($file_ext, $expensions) === false) {
+                echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
             } else {
-                if ($post['post_type_title'] != $data['post_type_title']) {
-                    $id_update = $db->update("post_type", $data, array("post_type_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_type_img']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
-                    } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
-                    }
+                if ($file_size > 2097152) {
+                    echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
                 } else {
-                    $id_update = $db->update("post_type", $data, array("post_type_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_type_img']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
+                    if ($post['post_type_title'] != $data['post_type_title']) {
+                        $id_update = $db->update("post_type", $data, array("post_type_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_type_img']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
+                        $id_update = $db->update("post_type", $data, array("post_type_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['post_type_img']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     }
+                }
+            }
+        }
+    } else {
+        $data =
+            [
+                "post_type_title" => postInput('post_type_title'),
+                "post_type_description" => postInput('post_type_description'),
+                "web_id" => postInput('web_id')
+            ];
+        if (postInput('post_type_title') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên nhóm bài viết');</script>";
+        } else {
+            if ($post['post_type_title'] != $data['post_type_title']) {
+                $id_update = $db->update("post_type", $data, array("post_type_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
+                }
+            } else {
+                $id_update = $db->update("post_type", $data, array("post_type_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
                 }
             }
         }
@@ -125,8 +157,12 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Ảnh nền</label>
                             <div class="col-sm-8">
-                                <input type="file" class='form-control-file' id="exampleFormControlFile1" name='post_type_img' onchange="preview_thumbail_logo(this);">
-                                <img width="100px" id="logo" src="<?php echo base_img('post_type') ?>photo/<?php echo $post_type['post_type_img'] ?>" alt="your image">
+                                <label className='cursor-pointer select-wrapper'>
+                                    <div className='logo-wrapper'>
+                                        <img width="100px" id="logo" alt='your image' src="<?php echo base_img('post_type') ?>photo/<?php echo $post_type['post_type_img'] ?>">
+                                    </div>
+                                    <input id="exampleFormControlFile1" type="file" style="display: none;" onchange="preview_thumbail_logo(this);" name='post_type_img' />
+                                </label>
                             </div>
                         </div>
 

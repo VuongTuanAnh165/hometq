@@ -14,61 +14,94 @@ $sql1 = "SELECT * FROM website_config";
 $website_config = $db->fetchdata($sql1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $errors_img = "";
-    $file_name = $_FILES['project_img']['name'];
-    $file_size = $_FILES['project_img']['size'];
-    $file_tmp = $_FILES['project_img']['tmp_name'];
-    $file_type = $_FILES['project_img']['type'];
-    $file_parts = explode('.', $_FILES['project_img']['name']);
-    $file_ext = strtolower(end($file_parts));
-    $expensions = array("jpeg", "jpg", "png");
+    if ($_FILES['project_img']['name'] != '') {
+        $file_name = $_FILES['project_img']['name'];
+        $file_size = $_FILES['project_img']['size'];
+        $file_tmp = $_FILES['project_img']['tmp_name'];
+        $file_type = $_FILES['project_img']['type'];
+        $file_parts = explode('.', $_FILES['project_img']['name']);
+        $file_ext = strtolower(end($file_parts));
+        $expensions = array("jpeg", "jpg", "png");
 
-    $project_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
-    $target = "../../../pages_img/project/photo/s" . basename($project_img);
-    $data =
-        [
-            "project_name" => postInput('project_name'),
-            "project_img" => $project_img,
-            "project_description" => postInput('project_description'),
-            "project_status" => postInput('project_status'),
-            "web_id" => postInput('web_id'),
-            "project_content" => postInput('project_content')
-        ];
-    $data_img =
-        [
-            "pages_img_gr_id" => 6,
-            "pages_img_name" => $project_img,
-            "pages_img_link" => base_img("project") . "photo/" . $project_img
-        ];
-    if (postInput('project_name') == '') {
-        echo "<script>alert('Mời bạn nhập đầy đủ tên dự án');</script>";
-    } else {
-        if (in_array($file_ext, $expensions) === false) {
-            echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
+        $project_img = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
+        $target = "../../../pages_img/project/photo/s" . basename($project_img);
+        $data =
+            [
+                "project_name" => postInput('project_name'),
+                "project_img" => $project_img,
+                "project_description" => postInput('project_description'),
+                "project_status" => postInput('project_status'),
+                "web_id" => postInput('web_id'),
+                "project_content" => postInput('project_content')
+            ];
+        $data_img =
+            [
+                "pages_img_gr_id" => 6,
+                "pages_img_name" => $project_img,
+                "pages_img_link" => base_img("project") . "photo/" . $project_img
+            ];
+        if (postInput('project_name') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên dự án');</script>";
         } else {
-            if ($file_size > 2097152) {
-                echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
+            if (in_array($file_ext, $expensions) === false) {
+                echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
             } else {
-                if ($post['project_name'] != $data['project_name']) {
-                    $id_update = $db->update("project", $data, array("project_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
-                    } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
-                    }
+                if ($file_size > 2097152) {
+                    echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
                 } else {
-                    $id_update = $db->update("project", $data, array("project_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
+                    if ($post['project_name'] != $data['project_name']) {
+                        $id_update = $db->update("project", $data, array("project_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
+                        $id_update = $db->update("project", $data, array("project_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['project_img']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     }
+                }
+            }
+        }
+    } else {
+        $data =
+            [
+                "project_name" => postInput('project_name'),
+                "project_description" => postInput('project_description'),
+                "project_status" => postInput('project_status'),
+                "web_id" => postInput('web_id'),
+                "project_content" => postInput('project_content')
+            ];
+        if (postInput('project_name') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên dự án');</script>";
+        } else {
+            if ($post['project_name'] != $data['project_name']) {
+                $id_update = $db->update("project", $data, array("project_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
+                }
+            } else {
+                $id_update = $db->update("project", $data, array("project_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
                 }
             }
         }
@@ -127,8 +160,12 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Ảnh nền</label>
                             <div class="col-sm-8">
-                                <input type="file" class='form-control-file' id="exampleFormControlFile1" name='project_img' onchange="preview_thumbail_logo(this);">
-                                <img width="100px" id="logo" src="<?php echo base_img('project') ?>photo/<?php echo $project['project_img'] ?>" alt="your image">
+                                <label className='cursor-pointer select-wrapper'>
+                                    <div className='logo-wrapper'>
+                                        <img width="100px" id="logo" alt='your image' src="<?php echo base_img('project') ?>photo/<?php echo $project['project_img'] ?>">
+                                    </div>
+                                    <input id="exampleFormControlFile1" type="file" style="display: none;" onchange="preview_thumbail_logo(this);" name='project_img' />
+                                </label>
                             </div>
                         </div>
 
