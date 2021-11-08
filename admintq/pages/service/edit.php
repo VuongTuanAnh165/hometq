@@ -14,58 +14,91 @@ $sql1 = "SELECT * FROM service_group";
 $service_group = $db->fetchdata($sql1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $file_name = $_FILES['service_image']['name'];
-    $file_size = $_FILES['service_image']['size'];
-    $file_tmp = $_FILES['service_image']['tmp_name'];
-    $file_type = $_FILES['service_image']['type'];
-    $file_parts = explode('.', $_FILES['service_image']['name']);
-    $file_ext = strtolower(end($file_parts));
-    $expensions = array("jpeg", "jpg", "png");
-    $service_image =substr(md5(mt_rand()), 0 ,-1). '.' . $file_ext;
-    $target = "../../../pages_img/service/photo/" . basename($service_image);
-    $data =
-        [
-            "service_name" => postInput('service_name'),
-            "service_description" => postInput('service_description'),
-            "service_content" => postInput('service_content'),
-            "service_gr_id" => postInput('service_gr_id'),
-            "service_image" => $service_image
-        ];
-    $data_img =
-        [
-            "pages_img_gr_id" => 7,
-            "pages_img_name" => $service_image,
-            "pages_img_link" => base_img("service") . "photo/" . $service_image
-        ];
-    if (postInput('service_name') == '') {
-        echo "<script>alert('Mời bạn nhập đầy đủ tên dịch vụ');</script>";
-    } else {
-        if (in_array($file_ext, $expensions) === false) {
-            echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
+    if ($_FILES['service_image']['name'] != '') {
+        $file_name = $_FILES['service_image']['name'];
+        $file_size = $_FILES['service_image']['size'];
+        $file_tmp = $_FILES['service_image']['tmp_name'];
+        $file_type = $_FILES['service_image']['type'];
+        $file_parts = explode('.', $_FILES['service_image']['name']);
+        $file_ext = strtolower(end($file_parts));
+        $expensions = array("jpeg", "jpg", "png");
+        $service_image = substr(md5(mt_rand()), 0, -1) . '.' . $file_ext;
+        $target = "../../../pages_img/service/photo/" . basename($service_image);
+        $data =
+            [
+                "service_name" => postInput('service_name'),
+                "service_description" => postInput('service_description'),
+                "service_content" => postInput('service_content'),
+                "service_gr_id" => postInput('service_gr_id'),
+                "service_image" => $service_image
+            ];
+        $data_img =
+            [
+                "pages_img_gr_id" => 7,
+                "pages_img_name" => $service_image,
+                "pages_img_link" => base_img("service") . "photo/" . $service_image
+            ];
+        if (postInput('service_name') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên dịch vụ');</script>";
         } else {
-            if ($file_size > 2097152) {
-                echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
+            if (in_array($file_ext, $expensions) === false) {
+                echo "<script>alert('Chỉ hỗ trợ upload file JPEG hoặc PNG.');</script>";
             } else {
-                if ($post['service_name'] != $data['service_name']) {
-                    $id_update = $db->update("service", $data, array("service_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img >0 && move_uploaded_file($_FILES['service_image']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
-                    } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
-                    }
+                if ($file_size > 2097152) {
+                    echo "<script>alert('Kích thước file không được lớn hơn 2MB.');</script>";
                 } else {
-                    $id_update = $db->update("service", $data, array("service_id" => $id));
-                    $id_insert_img = $db->insert("pages_img", $data_img);
-                    if ($id_update > 0 && $id_insert_img >0 && move_uploaded_file($_FILES['service_image']['tmp_name'], $target)) {
-                        $_SESSION['success'] = " Cập nhật thành công ";
-                        redirectAdmin($open);
+                    if ($post['service_name'] != $data['service_name']) {
+                        $id_update = $db->update("service", $data, array("service_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['service_image']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     } else {
-                        $_SESSION['error'] = " Dữ liệu không thay đổi ";
-                        redirectAdmin($open);
+                        $id_update = $db->update("service", $data, array("service_id" => $id));
+                        $id_insert_img = $db->insert("pages_img", $data_img);
+                        if ($id_update > 0 && $id_insert_img > 0 && move_uploaded_file($_FILES['service_image']['tmp_name'], $target)) {
+                            $_SESSION['success'] = " Cập nhật thành công ";
+                            redirectAdmin($open);
+                        } else {
+                            $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                            redirectAdmin($open);
+                        }
                     }
+                }
+            }
+        }
+    } else {
+        $data =
+            [
+                "service_name" => postInput('service_name'),
+                "service_description" => postInput('service_description'),
+                "service_content" => postInput('service_content'),
+                "service_gr_id" => postInput('service_gr_id')
+            ];
+        if (postInput('service_name') == '') {
+            echo "<script>alert('Mời bạn nhập đầy đủ tên dịch vụ');</script>";
+        } else {
+            if ($post['service_name'] != $data['service_name']) {
+                $id_update = $db->update("service", $data, array("service_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
+                }
+            } else {
+                $id_update = $db->update("service", $data, array("service_id" => $id));
+                if ($id_update > 0) {
+                    $_SESSION['success'] = " Cập nhật thành công ";
+                    redirectAdmin($open);
+                } else {
+                    $_SESSION['error'] = " Dữ liệu không thay đổi ";
+                    redirectAdmin($open);
                 }
             }
         }
@@ -122,9 +155,12 @@ require_once(__DIR__ . '/../../layout/header.php');
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Hình ảnh</label>
                             <div class="col-sm-8">
-                                <input type="file" class='form-control-file' id="exampleFormControlFile1" name='service_image' onchange="preview_thumbail1(this);">
-
-                                <img width="100px" id="anh1" src="<?php echo base_img('service') ?>photo/<?php echo $service['service_image'] ?>" alt="<?php echo $service['service_image'] ?>">
+                                <label className='cursor-pointer select-wrapper'>
+                                    <div className='logo-wrapper'>
+                                        <img width="100px" id="anh1" alt='your image' src="<?php echo base_img('service') ?>photo/<?php echo $service['service_image'] ?>">
+                                    </div>
+                                    <input id="exampleFormControlFile1" type="file" style="display: none;" onchange="preview_thumbail1(this);" name='service_image' />
+                                </label>
                             </div>
                         </div>
 
