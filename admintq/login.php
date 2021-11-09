@@ -1,6 +1,10 @@
 <?php
-$connect = mysqli_connect("127.0.0.1", "root", "", "website_multiple_management");
-session_start();
+require_once(__DIR__ . '/../autoload/autoload.php');
+$sql = "SELECT *  FROM company";
+$company = $db->fetchcheck($sql);
+?>
+
+<?php
 if (isset($_SESSION["username"])) {
   header("location:index.php");
 }
@@ -8,12 +12,12 @@ if (isset($_POST["login"])) {
   if (empty($_POST["username"]) && empty($_POST["password"])) {
     echo '<script>alert("Tài khoản và mật khẩu là bắt buộc")</script>';
   } else {
-    $username = mysqli_real_escape_string($connect, $_POST["username"]);
-    $password = mysqli_real_escape_string($connect, $_POST["password"]);
+    $username = $_POST["username"];
+    $password = $_POST["password"];
     $password = md5($password);
     $query = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($connect, $query);
-    if (mysqli_num_rows($result) > 0) {
+    $result = $db->fetchcheck($query);
+    if ($result > 0) {
       $_SESSION['username'] = $username;
       header("location:index.php");
     } else {
@@ -27,10 +31,13 @@ if (isset($_POST["login"])) {
 <html>
 
 <head>
-  <title>Webslesson Tutorial | PHP Login Registration Form with md5() password Encryption</title>
+  <title>Admin-Vườn đẹp An Nhiên</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo'] ?>" rel="apple-touch-icon-precomposed">
+  <link href="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo'] ?>" rel="apple-touch-icon-precomposed">
+  <link href="<?php echo base_img('company') ?>photo/<?php echo $company['company_logo'] ?>" rel="shortcut icon">
 </head>
 
 <body>
